@@ -1,17 +1,210 @@
 ---
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Cocha Tech Hackathon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col" style="background: radial-gradient(ellipse at 70% 50%, #0a2a4a 0%, #051525 40%, #020c1b 100%);">
+
+      <!-- Circuit board background (right side) -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute right-0 top-0 w-[60%] h-full">
+          <img
+            src="/images/circuit-board.png"
+            alt=""
+            class="w-full h-full object-cover object-left opacity-90"
+            onerror="this.style.display='none'"
+          />
+          <!-- Fallback SVG circuit when image not yet available -->
+          <svg
+            class="absolute inset-0 w-full h-full"
+            viewBox="0 0 800 600"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <defs>
+              <filter id="glow-teal">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <filter id="glow-gold">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Gold circuit traces -->
+            <g stroke="#c9a227" stroke-width="1.5" fill="none" opacity="0.7">
+              <path d="M400,0 L400,120 L320,200 L320,400 L200,500 L200,600"/>
+              <path d="M450,0 L450,100 L550,200 L550,350 L650,450 L650,600"/>
+              <path d="M380,0 L380,80 L280,180 L280,300 L180,400 L120,400 L120,600"/>
+              <path d="M500,0 L500,60 L600,160 L600,280 L700,380 L700,600"/>
+              <path d="M520,0 L520,40 L700,220 L800,220"/>
+              <path d="M560,0 L560,50 L760,250 L800,250"/>
+              <path d="M600,0 L600,80 L750,230 L800,230"/>
+              <path d="M320,200 L200,200 L100,300 L0,300"/>
+              <path d="M280,280 L160,280 L60,380 L0,380"/>
+              <path d="M320,350 L240,350 L140,450 L0,450"/>
+              <path d="M200,500 L100,500 L0,500"/>
+              <path d="M550,200 L680,200 L800,200"/>
+              <path d="M600,280 L750,280 L800,280"/>
+              <path d="M650,380 L800,380"/>
+              <path d="M320,200 L450,200"/>
+              <path d="M280,300 L550,300"/>
+              <path d="M200,400 L650,400"/>
+            </g>
+
+            <!-- Teal glowing nodes -->
+            <g filter="url(#glow-teal)">
+              <circle cx="400" cy="120" r="4" fill="#00e5ff" opacity="0.9"/>
+              <circle cx="320" cy="200" r="5" fill="#00e5ff" opacity="1"/>
+              <circle cx="450" cy="100" r="3" fill="#00e5ff" opacity="0.8"/>
+              <circle cx="550" cy="200" r="6" fill="#00e5ff" opacity="0.9"/>
+              <circle cx="280" cy="300" r="4" fill="#00e5ff" opacity="0.85"/>
+              <circle cx="600" cy="280" r="5" fill="#00e5ff" opacity="0.9"/>
+              <circle cx="200" cy="400" r="4" fill="#00e5ff" opacity="0.8"/>
+              <circle cx="650" cy="380" r="6" fill="#00e5ff" opacity="1"/>
+              <circle cx="380" cy="80" r="3" fill="#00e5ff" opacity="0.7"/>
+              <circle cx="500" cy="60" r="3" fill="#00e5ff" opacity="0.8"/>
+              <circle cx="520" cy="40" r="4" fill="#00e5ff" opacity="0.9"/>
+              <circle cx="320" cy="350" r="3" fill="#00e5ff" opacity="0.7"/>
+              <circle cx="550" cy="300" r="4" fill="#00e5ff" opacity="0.85"/>
+              <circle class="dot-move-1" cx="400" cy="60" r="3" fill="#40ffff" opacity="0.95"/>
+              <circle class="dot-move-2" cx="550" cy="150" r="3" fill="#40ffff" opacity="0.95"/>
+              <circle class="dot-move-3" cx="320" cy="280" r="3" fill="#40ffff" opacity="0.9"/>
+            </g>
+
+            <!-- Gold glowing nodes -->
+            <g filter="url(#glow-gold)">
+              <circle cx="450" cy="200" r="4" fill="#ffd700" opacity="0.9"/>
+              <circle cx="650" cy="450" r="5" fill="#ffd700" opacity="0.85"/>
+              <circle cx="200" cy="500" r="4" fill="#ffd700" opacity="0.8"/>
+              <circle cx="700" cy="380" r="4" fill="#ffd700" opacity="0.9"/>
+              <circle cx="120" cy="400" r="3" fill="#ffd700" opacity="0.75"/>
+            </g>
+
+            <!-- Binary text right edge -->
+            <g fill="#1a4a6a" font-family="monospace" font-size="10" opacity="0.45">
+              <text x="730" y="40">10110</text><text x="740" y="55">01001</text>
+              <text x="725" y="70">11010</text><text x="735" y="85">00101</text>
+              <text x="728" y="100">10011</text><text x="742" y="115">01110</text>
+              <text x="730" y="130">11001</text><text x="738" y="145">00110</text>
+              <text x="726" y="160">10101</text><text x="744" y="175">01011</text>
+              <text x="732" y="190">11100</text><text x="736" y="205">00011</text>
+              <text x="729" y="220">10010</text><text x="741" y="235">01101</text>
+              <text x="727" y="250">11011</text><text x="739" y="265">00100</text>
+              <text x="731" y="280">10001</text><text x="743" y="295">01000</text>
+              <text x="728" y="310">10111</text><text x="740" y="325">01110</text>
+              <text x="730" y="340">11010</text><text x="736" y="355">00101</text>
+              <text x="727" y="370">10011</text><text x="742" y="385">01110</text>
+              <text x="729" y="400">11001</text><text x="738" y="415">00110</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Gradient blend: left solid, fade to transparent right -->
+        <div class="absolute inset-0" style="background: linear-gradient(to right, #030f1e 28%, #030f1e99 48%, transparent 68%);"></div>
+        <!-- Bottom fade -->
+        <div class="absolute bottom-0 left-0 right-0 h-24" style="background: linear-gradient(to top, #020c1b, transparent);"></div>
+      </div>
+
+      <!-- Navbar -->
+      <nav class="relative z-10 flex items-center justify-between px-8 py-5 lg:px-14">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3">
+          <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="34" height="34" rx="6" stroke="#4dd8e8" stroke-width="1.5" fill="none"/>
+            <path d="M18 5 L29 11.5 L29 24.5 L18 31 L7 24.5 L7 11.5 Z" stroke="#4dd8e8" stroke-width="1.5" fill="none" opacity="0.55"/>
+            <path d="M18 11 L25 15 L25 23 L18 27 L11 23 L11 15 Z" stroke="#4dd8e8" stroke-width="1" fill="#4dd8e815"/>
+            <circle cx="18" cy="18" r="2.5" fill="#4dd8e8"/>
+          </svg>
+          <span class="text-white font-semibold text-base tracking-wide">Cocha Tech</span>
+        </a>
+
+        <!-- Nav links -->
+        <ul class="hidden md:flex items-center gap-9">
+          {['PRIZES', 'TIMELINE', 'CRITERIA', 'RESOURCES', 'FAQ'].map(item => (
+            <li>
+              <a
+                href={`#${item.toLowerCase()}`}
+                class="text-gray-400 hover:text-white text-[11px] font-semibold tracking-[0.18em] transition-colors duration-200"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Hero content -->
+      <div class="relative z-10 flex-1 flex items-center px-8 lg:px-14 pb-16 pt-4">
+        <div class="max-w-[520px]">
+          <h1 class="text-[clamp(3.5rem,7vw,6rem)] font-black text-white leading-[1.02] tracking-tight mb-7">
+            Cocha Tech<br/>Hackathon
+          </h1>
+
+          <p class="text-gray-300 text-[0.88rem] leading-[1.75] max-w-[320px]">
+            Join us for Cochabamba's premier innovation platform.
+            A high-end luxury hackathon connecting global talent
+            with local challenges. Our Grand Gala will crown the
+            victors in the heart of Cochabamba.{' '}
+            <a href="#details" class="text-[#4dd8e8] hover:text-white font-medium tracking-wide underline underline-offset-2 transition-colors duration-200">
+              EXPLORE DETAILS.
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Sparkle decoration bottom-right -->
+      <div class="absolute bottom-8 right-10 z-10 pointer-events-none">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" opacity="0.55">
+          <path d="M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z"/>
+        </svg>
+      </div>
+    </section>
+
+  </body>
 </html>
+
+<style>
+  @keyframes moveDot1 {
+    0%   { transform: translateY(0);   opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(380px); opacity: 0; }
+  }
+  @keyframes moveDot2 {
+    0%   { transform: translateY(0);   opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(300px); opacity: 0; }
+  }
+  @keyframes moveDot3 {
+    0%   { transform: translateY(0);   opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(150px); opacity: 0; }
+  }
+
+  .dot-move-1 { animation: moveDot1 4s ease-in-out infinite; }
+  .dot-move-2 { animation: moveDot2 5.5s ease-in-out infinite 1.8s; }
+  .dot-move-3 { animation: moveDot3 7s ease-in-out infinite 3.5s; }
+</style>
