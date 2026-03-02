@@ -1,0 +1,277 @@
+---
+// Sponsors/Allies section with design system
+---
+
+<section id="sponsors" class="sponsors-section">
+  <div class="sponsors-container">
+    <!-- Header -->
+    <div class="sponsors-header">
+      <h2 class="sponsors-title">
+        <span class="sponsors-accent">Nuestros Aliados</span>
+      </h2>
+      <p class="sponsors-description">
+        Organizaciones e instituciones que creen en la innovación para Bolivia
+      </p>
+    </div>
+
+    <!-- Organizers Tier -->
+    <div class="sponsors-tier">
+      <h3 class="sponsors-tier-title">Organizadores</h3>
+      <div class="sponsors-tier-grid sponsors-tier-grid-lg">
+        <div class="sponsors-logo-card">
+          <span>UCB</span>
+        </div>
+        <div class="sponsors-logo-card">
+          <span>UMSS</span>
+        </div>
+        <div class="sponsors-logo-card">
+          <span>UPB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banking Partners Tier -->
+    <div class="sponsors-tier">
+      <h3 class="sponsors-tier-title">Aliados Financieros</h3>
+      <div class="sponsors-tier-grid sponsors-tier-grid-md">
+        <div class="sponsors-logo-card sponsors-logo-card-sm">
+          <span>Banco 1</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-sm">
+          <span>Banco 2</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-sm">
+          <span>Banco 3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology & Social Partners Tier -->
+    <div class="sponsors-tier">
+      <h3 class="sponsors-tier-title">Socios Tecnológicos y Sociales</h3>
+      <div class="sponsors-tier-grid sponsors-tier-grid-sm">
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Tech Partner 1</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Tech Partner 2</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Social Partner 1</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Social Partner 2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- International Partners Tier -->
+    <div class="sponsors-tier">
+      <h3 class="sponsors-tier-title">Socios Internacionales</h3>
+      <div class="sponsors-tier-grid sponsors-tier-grid-sm">
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Intl Partner 1</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Intl Partner 2</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Intl Partner 3</span>
+        </div>
+        <div class="sponsors-logo-card sponsors-logo-card-xs">
+          <span>Intl Partner 4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --ds-bg-deep: #020b1c;
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --ds-glass-blur: 16px;
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+    --ds-fs-2xl: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+    --ds-radius-md: 10px;
+    --ds-radius-lg: 16px;
+    --ds-radius-xl: 24px;
+    --ds-space-4: 1rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-10: 2.5rem;
+    --ds-space-16: 4rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .sponsors-section {
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-deep);
+    font-family: var(--ds-font);
+  }
+
+  .sponsors-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .sponsors-header {
+    margin-bottom: var(--ds-space-16);
+    text-align: center;
+  }
+
+  .sponsors-title {
+    font-size: var(--ds-fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+  }
+
+  .sponsors-accent {
+    color: var(--ds-cyan);
+  }
+
+  .sponsors-description {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.7;
+    max-width: 55ch;
+    margin: 0 auto;
+    margin-top: 0;
+  }
+
+  .sponsors-tier {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .sponsors-tier-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+    text-align: center;
+  }
+
+  /* Grid layouts for different tier sizes */
+  .sponsors-tier-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--ds-space-6);
+  }
+
+  .sponsors-tier-grid-lg {
+    gap: var(--ds-space-8);
+  }
+
+  .sponsors-tier-grid-md {
+    gap: var(--ds-space-6);
+  }
+
+  @media (max-width: 768px) {
+    .sponsors-tier-grid-sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Convert flex to grid for small screens */
+  @media (min-width: 768px) {
+    .sponsors-tier-grid-lg {
+      display: flex;
+    }
+
+    .sponsors-tier-grid-md {
+      display: flex;
+    }
+
+    .sponsors-tier-grid-sm {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Logo cards */
+  .sponsors-logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ds-space-6);
+    background: var(--ds-glass-bg);
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-lg);
+    transition: all var(--ds-t-normal);
+    height: 96px;
+    min-width: 120px;
+    font-weight: 700;
+    color: var(--ds-text-primary);
+    font-size: var(--ds-fs-lg);
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .sponsors-logo-card:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-cyan);
+    box-shadow: 0 0 20px var(--ds-cyan-glow);
+    transform: translateY(-4px);
+  }
+
+  .sponsors-logo-card-sm {
+    height: 80px;
+    min-width: 100px;
+    font-size: var(--ds-fs-base);
+    font-weight: 600;
+  }
+
+  .sponsors-logo-card-xs {
+    height: 56px;
+    min-width: 80px;
+    font-size: var(--ds-fs-sm);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .sponsors-logo-card {
+      height: 80px;
+      min-width: auto;
+      flex: 1 1 calc(50% - 0.75rem);
+      font-size: var(--ds-fs-base);
+    }
+
+    .sponsors-logo-card-sm {
+      height: 70px;
+      font-size: var(--ds-fs-sm);
+    }
+
+    .sponsors-logo-card-xs {
+      height: 56px;
+      font-size: 0.7rem;
+    }
+
+    .sponsors-tier-grid-sm {
+      grid-template-columns: repeat(2, 1fr) !important;
+      display: grid !important;
+    }
+  }
+</style>

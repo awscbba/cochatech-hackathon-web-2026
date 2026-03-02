@@ -1,0 +1,256 @@
+---
+// Challenges section with design system
+---
+
+<section id="retos" class="challenges-section">
+  <div class="challenges-container">
+    <!-- Header -->
+    <div class="challenges-header">
+      <h2 class="challenges-title">
+        Los <span class="challenges-accent">9 Retos</span>
+      </h2>
+      <p class="challenges-intro">
+        Problemas reales de nuestro ecosistema que esperan soluciones innovadoras. Los retos están organizados en tres categorías: empresariales, bancarios y sociales.
+      </p>
+    </div>
+
+    <!-- Challenges List -->
+    <div class="challenges-list">
+      <!-- Challenge 1 -->
+      <div class="challenge-item">
+        <div class="challenge-icon">🏢</div>
+        <div class="challenge-content">
+          <h3 class="challenge-title">Retos Empresariales</h3>
+          <p class="challenge-description">
+            Desafíos reales de empresas locales buscando transformación digital y optimización de procesos. Incluyen casos de automatización, análisis de datos y modelos de negocio innovadores.
+          </p>
+          <span class="challenge-badge challenge-badge-cyan">
+            Se revela en la ceremonia
+          </span>
+        </div>
+      </div>
+
+      <!-- Challenge 2 -->
+      <div class="challenge-item">
+        <div class="challenge-icon">🏦</div>
+        <div class="challenge-content">
+          <h3 class="challenge-title">Retos Bancarios</h3>
+          <p class="challenge-description">
+            Innovación en servicios financieros, inclusión bancaria y seguridad. Estos retos están bajo acuerdos de confidencialidad con las instituciones participantes.
+          </p>
+          <p class="challenge-disclaimer">
+            * Bajo NDA (Non-Disclosure Agreement) con las instituciones financieras
+          </p>
+          <span class="challenge-badge challenge-badge-cyan">
+            Se revela en la ceremonia
+          </span>
+        </div>
+      </div>
+
+      <!-- Challenge 3 -->
+      <div class="challenge-item">
+        <div class="challenge-icon">❤️</div>
+        <div class="challenge-content">
+          <h3 class="challenge-title">Retos Sociales</h3>
+          <p class="challenge-description">
+            Desafíos de impacto social que mejoren la calidad de vida en Cochabamba. Educación, salud, sostenibilidad ambiental y desarrollo comunitario son nuestras áreas de enfoque.
+          </p>
+          <p class="challenge-description">
+            Estamos comprometidos con soluciones éticas y sostenibles que generen impacto positivo a largo plazo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Immersion Session Note -->
+    <div class="challenges-note">
+      <span class="note-label">Sesión de Inmersión:</span>
+      <span>Todos los equipos participarán en una sesión especial para entender profundamente los retos antes de comenzar el desarrollo.</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --ds-bg-deep: #020b1c;
+    --ds-bg-surface: #0a1628;
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --ds-glass-blur: 16px;
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-xs: clamp(0.65rem, 0.5vw + 0.4rem, 0.75rem);
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+    --ds-fs-2xl: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+    --ds-radius-md: 10px;
+    --ds-radius-lg: 16px;
+    --ds-radius-xl: 24px;
+    --ds-space-3: 0.75rem;
+    --ds-space-4: 1rem;
+    --ds-space-5: 1.25rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-10: 2.5rem;
+    --ds-space-12: 3rem;
+    --ds-space-16: 4rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .challenges-section {
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-surface);
+    font-family: var(--ds-font);
+  }
+
+  .challenges-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .challenges-header {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .challenges-title {
+    font-size: var(--ds-fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+  }
+
+  .challenges-accent {
+    background: linear-gradient(90deg, var(--ds-cyan), #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .challenges-intro {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.7;
+    max-width: 55ch;
+    margin: 0;
+  }
+
+  .challenges-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-6);
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .challenge-item {
+    display: flex;
+    gap: var(--ds-space-6);
+    padding: var(--ds-space-8);
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-lg);
+    transition: all var(--ds-t-normal);
+  }
+
+  .challenge-item:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-glass-border-hover);
+    box-shadow: var(--ds-shadow-lg);
+  }
+
+  .challenge-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .challenge-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .challenge-title {
+    font-size: var(--ds-fs-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .challenge-description {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .challenge-disclaimer {
+    font-size: var(--ds-fs-xs);
+    color: var(--ds-text-muted);
+    font-style: italic;
+    margin-bottom: var(--ds-space-3);
+    margin-top: 0;
+  }
+
+  .challenge-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--ds-radius-xl);
+    font-size: var(--ds-fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .challenge-badge-cyan {
+    background: var(--ds-cyan-dim);
+    color: var(--ds-cyan);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+  }
+
+  .challenges-note {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-3);
+    padding: var(--ds-space-6);
+    background: var(--ds-cyan-dim);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    border-radius: var(--ds-radius-lg);
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+  }
+
+  .note-label {
+    color: var(--ds-cyan);
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .challenges-note {
+      flex-direction: row;
+      gap: var(--ds-space-4);
+    }
+
+    .note-label {
+      flex-shrink: 0;
+    }
+  }
+</style>

@@ -1,0 +1,242 @@
+---
+// Requirements section with design system
+---
+
+<section id="requisitos" class="requirements-section">
+  <div class="requirements-container">
+    <!-- Header -->
+    <div class="requirements-header">
+      <h2 class="requirements-title">
+        Requisitos de <span class="requirements-accent">Participación</span>
+      </h2>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="requirements-grid">
+      <!-- Left Column: Eligibility -->
+      <div class="requirements-card requirements-card-eligibility">
+        <h3 class="requirements-card-title">¿Quién Puede Participar?</h3>
+        <ul class="requirements-list">
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Ser estudiante de pregrado o posgrado</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Estar inscrito en una universidad boliviana</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Tener 18 años o más</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Disponibilidad para 36-48 horas continuas</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Pasión por la innovación y el aprendizaje</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-check">✓</span>
+            <span class="requirements-list-text">Espíritu colaborativo y de trabajo en equipo</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Commitment -->
+      <div class="requirements-card requirements-card-commitment">
+        <h3 class="requirements-card-title">Compromiso con el Evento</h3>
+        <ul class="requirements-list">
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Asistencia obligatoria</strong> desde el inicio hasta el final del evento</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Disponibilidad completa</strong> durante las 36-48 horas</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Cumplimiento del código de conducta</strong> COCHATECH</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Acuerdos de propiedad intelectual</strong> y derechos de imagen</span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Respeto por los mentores, jueces y otros participantes</strong></span>
+          </li>
+          <li class="requirements-list-item">
+            <span class="requirements-list-icon requirements-list-icon-bullet">•</span>
+            <span class="requirements-list-text"><strong>Colaboración en post-evento</strong> si tu proyecto es seleccionado</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="requirements-cta">
+      <a href="#aplicar" class="requirements-btn">
+        Postular Ahora
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .requirements-section {
+    position: relative;
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-deep);
+    font-family: var(--ds-font);
+  }
+
+  .requirements-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .requirements-header {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .requirements-title {
+    font-size: var(--ds-fs-3xl);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin: 0;
+  }
+
+  .requirements-accent {
+    background: linear-gradient(90deg, var(--ds-cyan) 0%, var(--ds-cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-10);
+    margin-bottom: var(--ds-space-16);
+  }
+
+  @media (min-width: 768px) {
+    .requirements-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .requirements-card {
+    padding: var(--ds-space-10);
+    border-radius: var(--ds-radius-lg);
+    border: 1px solid var(--ds-cyan-light);
+    background: rgba(0, 210, 255, 0.06);
+    backdrop-filter: blur(8px);
+    transition: all var(--ds-t-normal);
+  }
+
+  .requirements-card:hover {
+    border-color: var(--ds-cyan);
+    background: rgba(0, 210, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .requirements-card-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ds-text-primary);
+    margin: 0 0 var(--ds-space-8) 0;
+  }
+
+  .requirements-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-5);
+  }
+
+  .requirements-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ds-space-4);
+  }
+
+  .requirements-list-icon {
+    font-weight: 700;
+    font-size: var(--ds-fs-xl);
+    flex-shrink: 0;
+    margin-top: -2px;
+  }
+
+  .requirements-list-icon-check {
+    color: var(--ds-green);
+  }
+
+  .requirements-list-icon-bullet {
+    color: var(--ds-cyan);
+  }
+
+  .requirements-list-text {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+  }
+
+  .requirements-cta {
+    text-align: center;
+  }
+
+  .requirements-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: var(--ds-fs-base);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: none;
+    border-radius: var(--ds-radius-lg);
+    cursor: pointer;
+    transition: all var(--ds-t-normal);
+    text-decoration: none;
+    background: var(--ds-cyan);
+    color: var(--ds-bg-deep);
+  }
+
+  .requirements-btn:hover {
+    background: #ffffff;
+    box-shadow: 0 0 40px var(--ds-cyan-glow), var(--ds-shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  .requirements-btn:active {
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    .requirements-section {
+      padding: var(--ds-space-12) clamp(1rem, 4vw, 3rem);
+    }
+
+    .requirements-title {
+      font-size: var(--ds-fs-2xl);
+    }
+
+    .requirements-card {
+      padding: var(--ds-space-8);
+    }
+
+    .requirements-btn {
+      width: 100%;
+    }
+  }
+</style>

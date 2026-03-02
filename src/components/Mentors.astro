@@ -1,0 +1,334 @@
+---
+// Mentors section with design system
+const mentorTracks = [
+  {
+    icon: '💼',
+    title: 'Mentores de Negocios',
+    description: 'Expertos en estrategia, validación de mercado y desarrollo de modelos de negocio innovadores.',
+  },
+  {
+    icon: '💻',
+    title: 'Mentores de Tecnología',
+    description: 'Especialistas en desarrollo, arquitectura de software, cloud computing y mejores prácticas.',
+  },
+  {
+    icon: '❤️',
+    title: 'Mentores Sociales',
+    description: 'Expertos en impacto social, sostenibilidad y soluciones que generan cambio positivo.',
+  },
+  {
+    icon: '🎨',
+    title: 'Mentores de UX/UI',
+    description: 'Especialistas en experiencia de usuario, diseño de interfaces y design thinking.',
+  },
+];
+---
+
+<section id="mentores" class="mentors-section">
+  <div class="mentors-bg-glow"></div>
+
+  <div class="mentors-container">
+    <!-- Header -->
+    <header class="mentors-header">
+      <div class="mentors-badge">
+        <span class="mentors-badge-dot" aria-hidden="true"></span>
+        <span class="mentors-badge-text">Expertos</span>
+      </div>
+      <h2 class="mentors-title">
+        Nuestros <span class="mentors-accent">Mentores</span>
+      </h2>
+      <p class="mentors-description">
+        Expertos de diferentes áreas de la industria estarán disponibles para guiar y mentorizar a tu equipo durante todo el hackathon.
+      </p>
+    </header>
+
+    <!-- Mentor Tracks Grid -->
+    <div class="mentors-tracks-grid">
+      {mentorTracks.map((track) => (
+        <article class="mentors-card" aria-label={track.title}>
+          <div class="mentors-card-icon" aria-hidden="true">
+            {track.icon}
+          </div>
+          <h3 class="mentors-card-title">{track.title}</h3>
+          <p class="mentors-card-text">
+            {track.description}
+          </p>
+          <span class="ds-badge ds-badge-cyan mentors-card-badge">
+            <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+            Mentoría disponible
+          </span>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mentors-cta">
+      <div class="mentors-cta-overlay"></div>
+      <div class="mentors-cta-content">
+        <h3 class="mentors-cta-title">¿Eres Mentor?</h3>
+        <p class="mentors-cta-text">
+          Nos encantaría contar con tu experiencia para guiar y motivar a la siguiente generación de innovadores. Únete a la red de mentores de COCHATECH.
+        </p>
+        <a href="mailto:mentores@cochatech.com" class="ds-btn ds-btn-primary ds-btn-lg">
+          Convertirme en Mentor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --ds-bg-surface: #0a1628;
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --ds-glass-blur: 16px;
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-xs: clamp(0.65rem, 0.5vw + 0.4rem, 0.75rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+    --ds-fs-3xl: clamp(2.75rem, 6vw + 0.5rem, 4.5rem);
+    --ds-radius-md: 10px;
+    --ds-radius-lg: 16px;
+    --ds-radius-xl: 24px;
+    --ds-radius-2xl: 32px;
+    --ds-space-2: 0.5rem;
+    --ds-space-4: 1rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-12: 3rem;
+    --ds-space-16: 4rem;
+    --ds-space-24: 6rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .mentors-section {
+    padding: var(--ds-space-24) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-surface);
+    font-family: var(--ds-font);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mentors-bg-glow {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 800px;
+    height: 400px;
+    background: var(--ds-cyan);
+    border-radius: 50%;
+    filter: blur(200px);
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .mentors-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Header */
+  .mentors-header {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .mentors-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-4);
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-glass-bg);
+    border: 1px solid var(--ds-glass-border);
+    margin-bottom: var(--ds-space-6);
+  }
+
+  .mentors-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ds-cyan);
+    box-shadow: 0 0 8px var(--ds-cyan-glow);
+  }
+
+  .mentors-badge-text {
+    font-size: var(--ds-fs-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ds-text-muted);
+  }
+
+  .mentors-title {
+    font-size: var(--ds-fs-3xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .mentors-accent {
+    background: linear-gradient(90deg, var(--ds-cyan), rgba(0, 210, 255, 0.3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .mentors-description {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  /* Mentor Tracks Grid */
+  .mentors-tracks-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-6);
+    margin-bottom: var(--ds-space-16);
+  }
+
+  @media (min-width: 768px) {
+    .mentors-tracks-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mentors-tracks-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .mentors-card {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    transition: all var(--ds-t-normal);
+  }
+
+  .mentors-card:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-glass-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--ds-shadow-lg);
+  }
+
+  .mentors-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--ds-radius-xl);
+    background: var(--ds-glass-bg);
+    border: 1px solid var(--ds-glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: var(--ds-space-6);
+    transition: all var(--ds-t-normal);
+  }
+
+  .mentors-card:hover .mentors-card-icon {
+    transform: scale(1.1);
+    border-color: var(--ds-cyan);
+    background: var(--ds-cyan-dim);
+    box-shadow: 0 0 20px var(--ds-cyan-glow);
+  }
+
+  .mentors-card-title {
+    font-size: var(--ds-fs-lg);
+    font-weight: 700;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-2);
+    margin-top: 0;
+  }
+
+  .mentors-card-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: var(--ds-space-6);
+    margin-top: 0;
+  }
+
+  .mentors-card-badge {
+    margin-top: auto;
+  }
+
+  /* CTA Section */
+  .mentors-cta {
+    padding: var(--ds-space-8);
+    border-radius: var(--ds-radius-2xl);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    background: rgba(0, 210, 255, 0.03);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .mentors-cta {
+      padding: var(--ds-space-12);
+    }
+  }
+
+  .mentors-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0, 210, 255, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  .mentors-cta-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mentors-cta-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 700;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .mentors-cta-text {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    margin-bottom: var(--ds-space-8);
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+  }
+</style>

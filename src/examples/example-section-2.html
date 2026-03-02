@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Collaborations UI</title>
+    <style>
+        /* ==========================================================================
+           1. CSS Custom Properties (Variables) & Theming
+           ========================================================================== */
+        :root {
+            /* Color Palette */
+            --bg-body: #050505; /* Deep black background */
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af; /* Gray-400, Contrast ratio > 4.5:1 against black */
+            
+            /* Gradient Text Colors */
+            --grad-start: #ffffff;
+            --grad-end: #dfb96b; /* Gold/Brass tone */
+
+            /* Glassmorphism System */
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --glass-bg-hover: rgba(255, 255, 255, 0.04);
+            --glass-border-hover: rgba(255, 255, 255, 0.15);
+            
+            /* UI Elements */
+            --btn-bg: rgba(255, 255, 255, 0.05);
+            --btn-bg-hover: rgba(255, 255, 255, 0.1);
+            --btn-border: rgba(255, 255, 255, 0.1);
+            
+            /* Status Colors */
+            --status-success: #22c55e;
+            --status-warning: #f59e0b;
+
+            /* Avatar Specific Colors */
+            --avatar-1-bg: #ffffff;
+            --avatar-1-text: #000000;
+            --avatar-2-bg: #6366f1; /* Indigo/Blurple */
+            --avatar-2-text: #ffffff;
+
+            /* Typography */
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            
+            /* Spacing & Layout */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            
+            /* Borders & Radii */
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-full: 9999px;
+
+            /* Animations */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --focus-ring: 0 0 0 2px var(--bg-body), 0 0 0 4px var(--grad-end);
+        }
+
+        /* ==========================================================================
+           2. Base Reset & Global Styles
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-md);
+        }
+
+        /* Utility to hide text visually but keep it for screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus styles for keyboard navigation */
+        :focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+            border-radius: var(--radius-md);
+        }
+
+        /* ==========================================================================
+           3. Component Layout & Typography
+           ========================================================================== */
+        .collabs-container {
+            width: 100%;
+            max-width: 1024px; /* Optimal reading/viewing width */
+            margin: 0 auto;
+        }
+
+        /* Header Styling */
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+        }
+
+        .section-title {
+            /* Responsive typography using clamp */
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* Gradient text effect */
+        .text-gradient {
+            background: linear-gradient(to right, var(--grad-start) 20%, var(--grad-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            /* Fallback for browsers that don't support background-clip: text */
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* List Styling */
+        .collab-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        /* ==========================================================================
+           4. Card Component (Glassmorphism & Flexbox)
+           ========================================================================== */
+        .collab-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 4vw, 2rem);
+            
+            /* Glassmorphism blurs */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            
+            /* Layout setup for mobile first */
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--spacing-lg);
+            
+            transition: var(--transition-smooth);
+        }
+
+        /* Hover States & Micro-animations */
+        .collab-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Card Layout Areas */
+        .card-main {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            flex: 1 1 100%; /* Take full width on mobile */
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-lg);
+            flex: 1 1 100%; /* Take full width on mobile */
+            border-top: 1px solid var(--glass-border);
+            padding-top: var(--spacing-md);
+        }
+
+        /* Avatar Styling */
+        .avatar {
+            width: clamp(40px, 5vw, 56px);
+            height: clamp(40px, 5vw, 56px);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            flex-shrink: 0;
+        }
+        
+        /* Specific avatar colors */
+        .avatar-type-1 { background-color: var(--avatar-1-bg); color: var(--avatar-1-text); }
+        .avatar-type-2 { background-color: var(--avatar-2-bg); color: var(--avatar-2-text); }
+
+        /* Details (Title & Subtitle) */
+        .details-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .brand-name {
+            font-size: clamp(1.125rem, 2vw, 1.35rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .campaign-info {
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            color: var(--text-secondary);
+        }
+
+        /* Stats Columns */
+        .stat-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Status Indicator Dots */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            display: inline-block;
+        }
+        .status-dot.success { background-color: var(--status-success); box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+        .status-dot.warning { background-color: var(--status-warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+
+        /* Action Button */
+        .action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            background-color: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+            /* Ensure button is clickable target size */
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .action-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background-color: var(--btn-bg-hover);
+            border-color: var(--glass-border-hover);
+        }
+
+        /* Icon micro-animation on hover */
+        .collab-card:hover .action-btn svg,
+        .action-btn:hover svg {
+            transform: translate(2px, -2px);
+        }
+
+        /* Focus state specifically for the button */
+        .action-btn:focus-visible {
+            border-radius: var(--radius-full);
+        }
+
+        /* ==========================================================================
+           5. Responsive Breakpoints
+           ========================================================================== */
+        
+        /* Tablet & Up (768px+) */
+        @media (min-width: 768px) {
+            .collab-card {
+                flex-wrap: nowrap; /* Prevent wrapping */
+            }
+
+            .card-main {
+                flex: 1; /* Allow main to grow and push meta to right */
+            }
+
+            .card-meta {
+                flex: 0 0 auto; /* Do not grow */
+                width: auto;
+                border-top: none;
+                padding-top: 0;
+                gap: clamp(2rem, 4vw, 4rem); /* Space between stat columns */
+            }
+
+            /* Right-align text in stats for desktop view */
+            .stat-group {
+                text-align: right;
+                align-items: flex-end;
+            }
+        }
+
+        /* Desktop & Up (1024px+) */
+        @media (min-width: 1024px) {
+            .collab-card {
+                padding: 1.5rem 2rem;
+            }
+        }
+        
+        /* Large Desktop (1440px+) - Scaling up max-width slightly if needed */
+        @media (min-width: 1440px) {
+             .collabs-container { max-width: 1100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Landmark Region for Accessibility -->
+    <main class="collabs-container" aria-labelledby="section-heading">
+        
+        <header class="section-header">
+            <!-- Utilizing span for selective gradient application -->
+            <h2 id="section-heading" class="section-title">Recent <span class="text-gradient">Collaborations</span></h2>
+        </header>
+
+        <!-- Semantic list for items -->
+        <ul class="collab-list" role="list">
+            
+            <!-- List Item 1 -->
+            <li class="collab-card" role="listitem">
+                <div class="card-main">
+                    <!-- aria-hidden true as the letter is decorative, the title handles semantics -->
+                    <div class="avatar avatar-type-1" aria-hidden="true">A</div>
+                    <div class="details-group">
+                        <h3 class="brand-name">AudioTechnica Global</h3>
+                        <p class="campaign-info">Product Launch &bull; 12 Creators &bull; Pan-Asia</p>
+                    </div>
+                </div>
+
+                <div class="card-meta">
+                    <div class="stat-group impressions">
+                        <span class="stat-label">Impressions</span>
+                        <span class="stat-value">45M+</span>
+                    </div>
+                    
+                    <div class="stat-group status">
+                        <span class="stat-label">Status</span>
+                        <span class="stat-value">
+                            <span class="status-dot success" aria-hidden="true"></span>
+                            Completed
+                        </span>
+                    </div>
+
+                    <!-- Descriptive aria-label for screen reader context -->
+                    <a href="#" class="action-btn" aria-label="View details for AudioTechnica Global collaboration">
+                        <!-- Inline SVG for performance and styling control -->
+                        <svg xmlns="http://www.w3.org/polled/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+
+            <!-- List Item 2 -->
+            <li class="collab-card" role="listitem">
+                <div class="card-main">
+                    <div class="avatar avatar-type-2" aria-hidden="true">S</div>
+                    <div class="details-group">
+                        <h3 class="brand-name">Stripe x Fintech</h3>
+                        <p class="campaign-info">Brand Awareness &bull; 8 Creators &bull; North America</p>
+                    </div>
+                </div>
+
+                <div class="card-meta">
+                    <div class="stat-group impressions">
+                        <span class="stat-label">Impressions</span>
+                        <span class="stat-value">12.5M</span>
+                    </div>
+                    
+                    <div class="stat-group status">
+                        <span class="stat-label">Status</span>
+                        <span class="stat-value">
+                            <span class="status-dot warning" aria-hidden="true"></span>
+                            Active
+                        </span>
+                    </div>
+
+                    <a href="#" class="action-btn" aria-label="View details for Stripe x Fintech collaboration">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+    </main>
+
+</body>
+</html>

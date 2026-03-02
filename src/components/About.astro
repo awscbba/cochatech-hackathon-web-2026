@@ -1,0 +1,199 @@
+---
+// About section with design system
+---
+
+<section id="sobre-el-evento" class="about-section">
+  <div class="about-container">
+    <!-- Header -->
+    <div class="about-header">
+      <h2 class="about-title">
+        ¿Qué es <span class="about-accent">COCHATECH?</span>
+      </h2>
+      <p class="about-text">
+        COCHATECH es un evento de innovación de alto nivel que reúne talento global con desafíos locales auténticos. Somos un hackathon premium diseñado para Cochabamba, por Cochabamba.
+      </p>
+      <p class="about-text">
+        Durante 36-48 horas, equipos multidisciplinarios colaboran bajo mentorías de expertos para crear soluciones reales que impacten en la economía, tecnología y sociedad de nuestra región.
+      </p>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="about-grid">
+      <!-- Card 1: Real Challenges -->
+      <div class="about-card">
+        <div class="about-card-icon about-card-icon-cyan">🎯</div>
+        <h3 class="about-card-title">Retos Reales</h3>
+        <p class="about-card-text">
+          Problemas reales de empresas, instituciones y comunidades. No son ejercicios teóricos: tus soluciones pueden implementarse.
+        </p>
+      </div>
+
+      <!-- Card 2: Active Mentors -->
+      <div class="about-card">
+        <div class="about-card-icon about-card-icon-yellow">🤝</div>
+        <h3 class="about-card-title">Mentores Activos</h3>
+        <p class="about-card-text">
+          Expertos en negocios, tecnología, diseño y impacto social. Disponibles para guiar tu equipo en cada fase del hackathon.
+        </p>
+      </div>
+
+      <!-- Card 3: Lasting Impact -->
+      <div class="about-card">
+        <div class="about-card-icon about-card-icon-white">🚀</div>
+        <h3 class="about-card-title">Impacto Continuo</h3>
+        <p class="about-card-text">
+          El hackathon no termina el último día. Ofrecemos mentorías post-evento y oportunidades de inversión para ideas prometedoras.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --ds-bg-deep: #020b1c;
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
+    --ds-yellow: #ffff00;
+    --ds-yellow-dim: rgba(255, 255, 0, 0.12);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --ds-glass-blur: 16px;
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+    --ds-fs-2xl: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+    --ds-radius-md: 10px;
+    --ds-radius-lg: 16px;
+    --ds-radius-xl: 24px;
+    --ds-space-4: 1rem;
+    --ds-space-5: 1.25rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-10: 2.5rem;
+    --ds-space-16: 4rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .about-section {
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-deep);
+    font-family: var(--ds-font);
+  }
+
+  .about-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .about-header {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .about-title {
+    font-size: var(--ds-fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+  }
+
+  .about-accent {
+    background: linear-gradient(90deg, var(--ds-cyan), var(--ds-yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .about-text {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.7;
+    max-width: 55ch;
+    margin-bottom: var(--ds-space-6);
+    margin-top: 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--ds-space-6);
+  }
+
+  .about-card {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-8);
+    transition: all var(--ds-t-normal);
+  }
+
+  .about-card:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-glass-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--ds-shadow-lg);
+  }
+
+  .about-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--ds-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: var(--ds-space-5);
+    border: 1px solid;
+    transition: transform var(--ds-t-normal);
+  }
+
+  .about-card:hover .about-card-icon {
+    transform: scale(1.15);
+  }
+
+  .about-card-icon-cyan {
+    background: var(--ds-cyan-dim);
+    border-color: rgba(0, 210, 255, 0.15);
+  }
+
+  .about-card-icon-yellow {
+    background: var(--ds-yellow-dim);
+    border-color: rgba(255, 255, 0, 0.15);
+  }
+
+  .about-card-icon-white {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .about-card-title {
+    font-size: var(--ds-fs-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .about-card-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

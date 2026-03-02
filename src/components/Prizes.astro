@@ -1,0 +1,547 @@
+---
+// Prizes section with design system
+type PrizeTone = 'cyan' | 'white' | 'yellow';
+
+const featuredBenefits = [
+  { icon: '💵', text: 'Premio monetario de $5,000 USD' },
+  { icon: '🎓', text: 'Mentoría especializada por 6 meses' },
+  { icon: '🚀', text: 'Acceso a inversión semilla' },
+  { icon: '📢', text: 'Cobertura mediática oficial' },
+] as const;
+
+const categories: Array<{
+  icon: string;
+  title: string;
+  reward: string;
+  tone: PrizeTone;
+}> = [
+  { icon: '🎯', title: 'Mejor Solución', reward: '$2,000 USD + Mentoría', tone: 'cyan' },
+  { icon: '❤️', title: 'Mayor Impacto Social', reward: '$2,000 USD + Mentoría', tone: 'white' },
+  { icon: '💡', title: 'Innovación Tecnológica', reward: '$1,500 USD + Mentoría', tone: 'cyan' },
+  { icon: '🎨', title: 'Mejor Diseño UX/UI', reward: '$1,000 USD + Mentoría', tone: 'cyan' },
+  { icon: '🚀', title: 'Mejor Pitch', reward: '$1,000 USD + Mentoría', tone: 'white' },
+  { icon: '⭐', title: 'Premio del Público', reward: '$500 USD + Reconocimiento', tone: 'yellow' },
+];
+
+const allTeamBenefits = [
+  { icon: '📜', label: 'Certificado oficial de participación' },
+  { icon: '🤝', label: 'Acceso directo a la red de conexiones' },
+  { icon: '📚', label: 'Recursos y créditos en la nube' },
+  { icon: '💼', label: 'Showcase para portfolio profesional' },
+] as const;
+
+// Helper maps for tone-based styling
+const iconToneClass: Record<PrizeTone, string> = {
+  cyan: 'prizes-icon-cyan',
+  white: 'prizes-icon-white',
+  yellow: 'prizes-icon-yellow',
+};
+
+const textToneClass: Record<PrizeTone, string> = {
+  cyan: 'prizes-text-cyan',
+  white: 'prizes-text-white',
+  yellow: 'prizes-text-yellow',
+};
+---
+
+<section id="premios" class="prizes-section">
+  <div class="prizes-container">
+
+    <!-- Header -->
+    <div class="prizes-header">
+      <h2 class="prizes-title">
+        <span class="prizes-accent">Premios</span> y Reconocimiento
+      </h2>
+      <p class="prizes-text">
+        Reconocemos la excelencia y la innovación. Más allá del dinero, ofrecemos visibilidad, recursos de alto nivel y oportunidades de crecimiento continuo para los mejores proyectos del hackathon.
+      </p>
+    </div>
+
+    <!-- Featured Prize Card -->
+    <div class="prizes-featured">
+      <div class="prizes-featured-content">
+        <!-- Left Side: Description -->
+        <div class="prizes-featured-left">
+          <div class="prizes-featured-icon" aria-hidden="true">🏆</div>
+          <h3 class="prizes-featured-title">Gran Premio COCHATECH</h3>
+          <p class="prizes-featured-description">
+            El equipo ganador recibe el galardón principal del evento, un paquete integral diseñado para llevar su prototipo directamente a fase de producción e incubación.
+          </p>
+
+          <ul class="prizes-benefits-list">
+            {featuredBenefits.map((benefit) => (
+              <li class="prizes-benefit-item">
+                <span class="prizes-benefit-icon" aria-hidden="true">{benefit.icon}</span>
+                <span class="prizes-benefit-text">{benefit.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right Side: Value Breakdown -->
+        <div class="prizes-featured-right">
+          <span class="prizes-value-label">Valor Total Estimado</span>
+          <div class="prizes-value-display">$5,000+</div>
+
+          <div class="prizes-badges">
+            <span class="ds-badge ds-badge-yellow">
+              <span class="ds-badge-dot ds-badge-dot-yellow" aria-hidden="true"></span>
+              Pase a Incubadora
+            </span>
+            <span class="ds-badge ds-badge-outline">
+              <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+              Entrevistas PR
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="prizes-categories-section">
+      <div class="prizes-categories-header">
+        <h3 class="prizes-categories-title">Premios por Categoría</h3>
+        <span class="ds-badge ds-badge-outline">
+          <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+          {categories.length} Categorías
+        </span>
+      </div>
+
+      <div class="prizes-grid">
+        {categories.map((category) => (
+          <div class="prizes-card">
+            <div class={`prizes-card-icon ${iconToneClass[category.tone]}`} aria-hidden="true">
+              {category.icon}
+            </div>
+            <h4 class="prizes-card-title">{category.title}</h4>
+            <p class="prizes-card-text">
+              Reconocimiento especial al equipo más destacado en esta área técnica.
+            </p>
+            <div class={`prizes-card-reward ${textToneClass[category.tone]}`}>
+              {category.reward}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- All Teams Benefits -->
+    <div class="prizes-all-benefits">
+      <h3 class="prizes-all-benefits-title">Beneficios para Todos</h3>
+
+      <div class="prizes-benefits-grid">
+        {allTeamBenefits.map((benefit) => (
+          <div class="prizes-benefit-card">
+            <div class="prizes-benefit-card-icon" aria-hidden="true">{benefit.icon}</div>
+            <p class="prizes-benefit-card-text">{benefit.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --ds-bg-deep: #020b1c;
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
+    --ds-yellow: #ffff00;
+    --ds-yellow-dim: rgba(255, 255, 0, 0.12);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
+    --ds-glass-blur: 16px;
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-xs: clamp(0.65rem, 0.5vw + 0.4rem, 0.75rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+    --ds-fs-2xl: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+    --ds-fs-3xl: clamp(2.75rem, 6vw + 0.5rem, 4.5rem);
+    --ds-radius-md: 10px;
+    --ds-radius-lg: 16px;
+    --ds-radius-xl: 24px;
+    --ds-radius-full: 9999px;
+    --ds-space-2: 0.5rem;
+    --ds-space-3: 0.75rem;
+    --ds-space-4: 1rem;
+    --ds-space-5: 1.25rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-10: 2.5rem;
+    --ds-space-16: 4rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .prizes-section {
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-deep);
+    font-family: var(--ds-font);
+  }
+
+  .prizes-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .prizes-header {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .prizes-title {
+    font-size: var(--ds-fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+  }
+
+  .prizes-accent {
+    background: linear-gradient(90deg, var(--ds-yellow), var(--ds-cyan));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .prizes-text {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-text-secondary);
+    line-height: 1.7;
+    max-width: 55ch;
+    margin-bottom: var(--ds-space-6);
+    margin-top: 0;
+  }
+
+  /* Featured Prize Card */
+  .prizes-featured {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid rgba(255, 255, 0, 0.2);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-8);
+    margin-bottom: var(--ds-space-16);
+    transition: all var(--ds-t-normal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prizes-featured::before {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 256px;
+    height: 256px;
+    background: var(--ds-yellow);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.1;
+    pointer-events: none;
+  }
+
+  .prizes-featured-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--ds-space-10);
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (max-width: 768px) {
+    .prizes-featured-content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .prizes-featured-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prizes-featured-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--ds-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: var(--ds-yellow-dim);
+    border: 1px solid rgba(255, 255, 0, 0.15);
+    margin-bottom: var(--ds-space-5);
+  }
+
+  .prizes-featured-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-4);
+    margin-top: 0;
+  }
+
+  .prizes-featured-description {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--ds-space-6);
+    margin-top: 0;
+  }
+
+  .prizes-benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-3);
+    margin: var(--ds-space-6) 0 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .prizes-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--ds-space-4);
+  }
+
+  .prizes-benefit-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .prizes-benefit-text {
+    font-size: var(--ds-fs-sm);
+    font-weight: 500;
+    color: var(--ds-text-primary);
+  }
+
+  .prizes-featured-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: 1px solid var(--ds-glass-border);
+    padding-top: var(--ds-space-6);
+  }
+
+  @media (min-width: 769px) {
+    .prizes-featured-right {
+      border-top: none;
+      border-left: 1px solid var(--ds-glass-border);
+      padding-top: 0;
+      padding-left: var(--ds-space-10);
+    }
+  }
+
+  .prizes-value-label {
+    font-size: var(--ds-fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ds-text-muted);
+    font-weight: 700;
+    margin-bottom: var(--ds-space-2);
+  }
+
+  .prizes-value-display {
+    font-size: var(--ds-fs-3xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ds-yellow);
+    line-height: 1.1;
+    margin-bottom: var(--ds-space-6);
+  }
+
+  .prizes-badges {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-3);
+  }
+
+  /* Categories Grid */
+  .prizes-categories-section {
+    margin-bottom: var(--ds-space-16);
+  }
+
+  .prizes-categories-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-4);
+    margin-bottom: var(--ds-space-10);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 768px) {
+    .prizes-categories-header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .prizes-categories-title {
+    font-size: var(--ds-fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin: 0;
+  }
+
+  .prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--ds-space-6);
+  }
+
+  .prizes-card {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-8);
+    transition: all var(--ds-t-normal);
+  }
+
+  .prizes-card:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-glass-border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--ds-shadow-lg);
+  }
+
+  .prizes-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--ds-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: var(--ds-space-5);
+    border: 1px solid;
+    transition: transform var(--ds-t-normal);
+  }
+
+  .prizes-card:hover .prizes-card-icon {
+    transform: scale(1.1);
+  }
+
+  .prizes-icon-cyan {
+    background: var(--ds-cyan-dim);
+    color: var(--ds-cyan);
+    border-color: rgba(0, 210, 255, 0.15);
+  }
+
+  .prizes-icon-yellow {
+    background: var(--ds-yellow-dim);
+    color: var(--ds-yellow);
+    border-color: rgba(255, 255, 0, 0.15);
+  }
+
+  .prizes-icon-white {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--ds-text-primary);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .prizes-card-title {
+    font-size: var(--ds-fs-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-2);
+    margin-top: 0;
+  }
+
+  .prizes-card-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin: 0 0 var(--ds-space-4) 0;
+  }
+
+  .prizes-card-reward {
+    font-size: var(--ds-fs-sm);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding-top: var(--ds-space-4);
+    border-top: 1px solid var(--ds-glass-border);
+    margin-top: 0;
+  }
+
+  .prizes-text-cyan {
+    color: var(--ds-cyan);
+  }
+
+  .prizes-text-yellow {
+    color: var(--ds-yellow);
+  }
+
+  .prizes-text-white {
+    color: var(--ds-text-primary);
+  }
+
+  /* All Benefits Section */
+  .prizes-all-benefits {
+    padding: 0;
+  }
+
+  .prizes-all-benefits-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-8);
+    margin-top: 0;
+  }
+
+  .prizes-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--ds-space-6);
+  }
+
+  .prizes-benefit-card {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--ds-space-5);
+    transition: all var(--ds-t-normal);
+  }
+
+  .prizes-benefit-card:hover {
+    background: var(--ds-glass-bg-hover);
+    border-color: var(--ds-glass-border-hover);
+    transform: translateY(-4px);
+  }
+
+  .prizes-benefit-card-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .prizes-benefit-card-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>

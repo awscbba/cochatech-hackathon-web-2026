@@ -1,0 +1,1329 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COCHATECH 2026 — Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ================================================================
+       DESIGN SYSTEM PAGE — Self-contained styles
+       ================================================================ */
+
+    /* Note: Core variables (--ds-*) are now correctly hosted globally in src/styles/global.css */
+
+    /* --- Page Base --- */
+    body {
+      font-family: var(--ds-font);
+      background: var(--ds-bg-deep);
+      color: var(--ds-text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      margin: 0; padding: 0;
+    }
+
+    /* --- DS Page Layout --- */
+    .ds-page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+    }
+
+    /* --- DS Header --- */
+    .ds-header {
+      padding: var(--ds-space-16) 0 var(--ds-space-12);
+      border-bottom: 1px solid var(--ds-glass-border);
+      margin-bottom: var(--ds-space-16);
+    }
+
+    .ds-header-top {
+      display: flex;
+      align-items: center;
+      gap: var(--ds-space-4);
+      margin-bottom: var(--ds-space-6);
+    }
+
+    .ds-logo-mark {
+      width: 40px; height: 40px;
+      border-radius: var(--ds-radius-md);
+      background: linear-gradient(135deg, var(--ds-cyan), var(--ds-cyan-dim));
+      display: grid; place-items: center;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--ds-bg-deep);
+      flex-shrink: 0;
+    }
+
+    .ds-header-label {
+      font-size: var(--ds-fs-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ds-cyan);
+      font-weight: 600;
+    }
+
+    .ds-header h1 {
+      font-size: var(--ds-fs-2xl);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--ds-space-4);
+    }
+
+    .ds-header p {
+      color: var(--ds-text-secondary);
+      font-size: var(--ds-fs-base);
+      max-width: 60ch;
+      margin: 0;
+    }
+
+    /* --- DS Nav (sticky TOC) --- */
+    .ds-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(2, 11, 28, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--ds-glass-border);
+      padding: var(--ds-space-4) 0;
+      margin: 0 calc(-1 * clamp(1rem, 4vw, 3rem));
+      padding-left: clamp(1rem, 4vw, 3rem);
+      padding-right: clamp(1rem, 4vw, 3rem);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .ds-nav::-webkit-scrollbar { display: none; }
+
+    .ds-nav ul {
+      display: flex;
+      gap: var(--ds-space-1);
+      list-style: none;
+      margin: 0; padding: 0;
+      white-space: nowrap;
+    }
+
+    .ds-nav a {
+      display: block;
+      padding: var(--ds-space-2) var(--ds-space-4);
+      font-size: var(--ds-fs-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-text-muted);
+      border-radius: var(--ds-radius-sm);
+      transition: all var(--ds-t-fast);
+      text-decoration: none;
+    }
+
+    .ds-nav a:hover {
+      color: var(--ds-text-primary);
+      background: var(--ds-glass-bg-hover);
+    }
+
+    /* --- Section --- */
+    .ds-section {
+      padding: var(--ds-space-16) 0;
+      border-bottom: 1px solid var(--ds-glass-border);
+    }
+
+    .ds-section:last-child { border-bottom: none; }
+
+    .ds-section-header {
+      margin-bottom: var(--ds-space-10);
+    }
+
+    .ds-section-number {
+      font-size: var(--ds-fs-xs);
+      font-weight: 700;
+      color: var(--ds-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--ds-space-2);
+      display: block;
+    }
+
+    .ds-section-title {
+      font-size: var(--ds-fs-xl);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--ds-space-2);
+    }
+
+    .ds-section-desc {
+      color: var(--ds-text-secondary);
+      font-size: var(--ds-fs-sm);
+      max-width: 55ch;
+      margin: 0;
+    }
+
+    /* --- Color System --- */
+    .ds-color-group {
+      margin-bottom: var(--ds-space-10);
+    }
+
+    .ds-color-group-title {
+      font-size: var(--ds-fs-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ds-text-muted);
+      margin-bottom: var(--ds-space-4);
+    }
+
+    .ds-color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--ds-space-4);
+    }
+
+    .ds-swatch {
+      border-radius: var(--ds-radius-lg);
+      overflow: hidden;
+      background: var(--ds-glass-bg);
+      border: 1px solid var(--ds-glass-border);
+      transition: transform var(--ds-t-normal), box-shadow var(--ds-t-normal);
+    }
+
+    .ds-swatch:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--ds-shadow-md);
+    }
+
+    .ds-swatch-color {
+      height: 80px;
+      width: 100%;
+    }
+
+    .ds-swatch-info {
+      padding: var(--ds-space-3) var(--ds-space-4);
+    }
+
+    .ds-swatch-name {
+      font-size: var(--ds-fs-sm);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .ds-swatch-value {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* --- Typography Scale --- */
+    .ds-type-scale {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-2);
+    }
+
+    .ds-type-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      align-items: baseline;
+      gap: var(--ds-space-6);
+      padding: var(--ds-space-4) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    @media (min-width: 768px) {
+      .ds-type-row {
+        grid-template-columns: 120px 80px 1fr;
+      }
+    }
+
+    .ds-type-label {
+      font-size: var(--ds-fs-xs);
+      font-weight: 600;
+      color: var(--ds-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+    }
+
+    .ds-type-size {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-cyan);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .ds-type-size { display: block; }
+    }
+
+    .ds-type-sample {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* --- Spacing --- */
+    .ds-spacing-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-3);
+    }
+
+    .ds-spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--ds-space-4);
+    }
+
+    .ds-spacing-label {
+      width: 80px;
+      flex-shrink: 0;
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      text-align: right;
+    }
+
+    .ds-spacing-bar {
+      height: 28px;
+      background: linear-gradient(90deg, var(--ds-cyan-dim), transparent);
+      border-left: 3px solid var(--ds-cyan);
+      border-radius: 0 var(--ds-radius-sm) var(--ds-radius-sm) 0;
+      transition: all var(--ds-t-normal);
+    }
+
+    .ds-spacing-row:hover .ds-spacing-bar {
+      background: linear-gradient(90deg, rgba(0, 210, 255, 0.25), transparent);
+    }
+
+    .ds-spacing-px {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-secondary);
+      font-weight: 500;
+      margin-left: var(--ds-space-3);
+      flex-shrink: 0;
+    }
+
+    /* --- Radius --- */
+    .ds-radius-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--ds-space-6);
+    }
+
+    .ds-radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--ds-space-3);
+    }
+
+    .ds-radius-box {
+      width: 80px;
+      height: 80px;
+      border: 2px solid var(--ds-cyan);
+      background: var(--ds-cyan-dim);
+      transition: all var(--ds-t-normal);
+    }
+
+    .ds-radius-item:hover .ds-radius-box {
+      background: rgba(0, 210, 255, 0.2);
+      box-shadow: 0 0 20px var(--ds-cyan-dim);
+    }
+
+    .ds-radius-name {
+      font-size: var(--ds-fs-xs);
+      font-weight: 600;
+      color: var(--ds-text-secondary);
+    }
+
+    .ds-radius-value {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* --- Buttons --- */
+    .ds-button-group {
+      margin-bottom: var(--ds-space-8);
+    }
+
+    .ds-button-group-title {
+      font-size: var(--ds-fs-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ds-text-muted);
+      margin-bottom: var(--ds-space-4);
+    }
+
+    .ds-button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ds-space-4);
+      align-items: center;
+    }
+
+    /* --- Badges / Pills --- */
+    .ds-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--ds-space-3);
+      align-items: center;
+    }
+
+    /* --- Glass Cards --- */
+    .ds-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--ds-space-6);
+    }
+
+    /* --- Gradient Text Demo --- */
+    .ds-gradient-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-8);
+    }
+
+    .ds-gradient-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-2);
+    }
+
+    .ds-gradient-label {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+
+    /* --- Shadows demo --- */
+    .ds-shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--ds-space-6);
+    }
+
+    .ds-shadow-demo {
+      aspect-ratio: 4/3;
+      border-radius: var(--ds-radius-lg);
+      background: var(--ds-bg-elevated);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-2);
+      transition: all var(--ds-t-normal);
+    }
+
+    .ds-shadow-demo span:first-child {
+      font-size: var(--ds-fs-sm);
+      font-weight: 600;
+    }
+
+    .ds-shadow-demo span:last-child {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* --- Glow effects --- */
+    .ds-glow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--ds-space-6);
+    }
+
+    .ds-glow-demo {
+      aspect-ratio: 4/3;
+      border-radius: var(--ds-radius-lg);
+      border: 1px solid var(--ds-glass-border);
+      background: var(--ds-glass-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ds-glow-demo::before {
+      content: '';
+      position: absolute;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+    }
+
+    .ds-glow-cyan::before {
+      background: var(--ds-cyan);
+      top: 20%; left: 30%;
+    }
+
+    .ds-glow-yellow::before {
+      background: var(--ds-yellow);
+      top: 30%; left: 40%;
+    }
+
+    .ds-glow-mixed::before {
+      background: var(--ds-cyan);
+      top: 20%; left: 20%;
+    }
+
+    .ds-glow-mixed::after {
+      content: '';
+      position: absolute;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.3;
+      background: var(--ds-yellow);
+      bottom: 20%; right: 20%;
+    }
+
+    .ds-glow-demo span {
+      position: relative; z-index: 1;
+    }
+
+    .ds-glow-demo span:first-child {
+      font-size: var(--ds-fs-sm);
+      font-weight: 600;
+    }
+
+    .ds-glow-demo span:last-child {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-secondary);
+    }
+
+    /* --- Dividers --- */
+    .ds-divider-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-8);
+    }
+
+    .ds-divider-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-space-3);
+    }
+
+    .ds-divider-label {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .ds-divider-subtle {
+      height: 1px;
+      background: var(--ds-glass-border);
+    }
+
+    .ds-divider-glow {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ds-cyan), transparent);
+      opacity: 0.5;
+    }
+
+    .ds-divider-dot {
+      display: flex;
+      align-items: center;
+      gap: var(--ds-space-4);
+    }
+
+    .ds-divider-dot::before,
+    .ds-divider-dot::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--ds-glass-border);
+    }
+
+    .ds-divider-dot-inner {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ds-cyan);
+      box-shadow: 0 0 10px var(--ds-cyan-glow);
+      flex-shrink: 0;
+    }
+
+    /* --- Animation Showcase --- */
+    .ds-anim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--ds-space-6);
+    }
+
+    .ds-anim-box {
+      aspect-ratio: 1;
+      border-radius: var(--ds-radius-lg);
+      background: var(--ds-glass-bg);
+      border: 1px solid var(--ds-glass-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--ds-space-3);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ds-anim-box span:first-child {
+      font-size: var(--ds-fs-sm);
+      font-weight: 600;
+      position: relative; z-index: 1;
+    }
+
+    .ds-anim-box span:last-child {
+      font-size: var(--ds-fs-xs);
+      color: var(--ds-text-muted);
+      position: relative; z-index: 1;
+    }
+
+    .ds-anim-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--ds-shadow-lg);
+      border-color: var(--ds-glass-border-hover);
+    }
+
+    .ds-anim-scale:hover {
+      transform: scale(1.05);
+      border-color: var(--ds-glass-border-hover);
+    }
+
+    .ds-anim-glow:hover {
+      box-shadow: var(--ds-shadow-glow);
+      border-color: rgba(0, 210, 255, 0.3);
+    }
+
+    @keyframes ds-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 var(--ds-cyan-dim); }
+      50% { box-shadow: 0 0 0 12px transparent; }
+    }
+
+    .ds-anim-pulse:hover {
+      animation: ds-pulse 1.5s ease-in-out infinite;
+      border-color: var(--ds-cyan);
+    }
+
+    @keyframes ds-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .ds-anim-shimmer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      transform: translateX(-100%);
+    }
+
+    .ds-anim-shimmer:hover::after {
+      animation: ds-shimmer 0.8s ease;
+    }
+
+    /* All anim boxes get base transition */
+    .ds-anim-box {
+      transition: all 0.4s var(--ds-ease-out);
+    }
+
+    /* --- Footer --- */
+    .ds-footer {
+      padding: var(--ds-space-12) 0;
+      text-align: center;
+      color: var(--ds-text-muted);
+      font-size: var(--ds-fs-xs);
+      letter-spacing: 0.05em;
+    }
+
+    .ds-footer strong {
+      color: var(--ds-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-page">
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="ds-header">
+      <div class="ds-header-top">
+        <div class="ds-logo-mark" aria-hidden="true">CT</div>
+        <span class="ds-header-label">Design System v1.0</span>
+      </div>
+      <h1>COCHATECH 2026</h1>
+      <p>Design tokens, components, and guidelines for the hackathon landing page. A dark luxury system built on glassmorphism, cyan accents, and precision typography.</p>
+    </header>
+
+    <!-- ============================================================
+         STICKY NAV
+         ============================================================ -->
+    <nav class="ds-nav" aria-label="Design system sections">
+      <ul>
+        <li><a href="#colors">Colors</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#spacing">Spacing</a></li>
+        <li><a href="#radius">Radius</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#badges">Badges</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#gradients">Gradients</a></li>
+        <li><a href="#shadows">Shadows</a></li>
+        <li><a href="#glows">Glows</a></li>
+        <li><a href="#dividers">Dividers</a></li>
+        <li><a href="#animations">Animations</a></li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <!-- ============================================================
+           01. COLORS
+           ============================================================ -->
+      <section id="colors" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">01</span>
+          <h2 class="ds-section-title">Color System</h2>
+          <p class="ds-section-desc">A deep-space palette anchored on midnight blue, with electric cyan as the primary accent and strategic yellow for energy bursts.</p>
+        </div>
+
+        <!-- Backgrounds -->
+        <div class="ds-color-group">
+          <h3 class="ds-color-group-title">Backgrounds</h3>
+          <div class="ds-color-grid">
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#020b1c;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Deep</div>
+                <div class="ds-swatch-value">#020b1c</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#0a1628;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Surface</div>
+                <div class="ds-swatch-value">#0a1628</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#111d33;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Elevated</div>
+                <div class="ds-swatch-value">#111d33</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.07);"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Glass</div>
+                <div class="ds-swatch-value">white 3%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accents -->
+        <div class="ds-color-group">
+          <h3 class="ds-color-group-title">Accents</h3>
+          <div class="ds-color-grid">
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#00d2ff;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Cyan</div>
+                <div class="ds-swatch-value">#00d2ff</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:rgba(0,210,255,0.15);"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Cyan Dim</div>
+                <div class="ds-swatch-value">cyan 15%</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#ffff00;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Yellow</div>
+                <div class="ds-swatch-value">#ffff00</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:rgba(255,255,0,0.12);"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Yellow Dim</div>
+                <div class="ds-swatch-value">yellow 12%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="ds-color-group">
+          <h3 class="ds-color-group-title">Text</h3>
+          <div class="ds-color-grid">
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#ffffff;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Primary</div>
+                <div class="ds-swatch-value">#ffffff</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:rgba(255,255,255,0.6);"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Secondary</div>
+                <div class="ds-swatch-value">white 60%</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:rgba(255,255,255,0.35);"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Muted</div>
+                <div class="ds-swatch-value">white 35%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Semantic -->
+        <div class="ds-color-group">
+          <h3 class="ds-color-group-title">Semantic</h3>
+          <div class="ds-color-grid">
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#22c55e;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Success</div>
+                <div class="ds-swatch-value">#22c55e</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#f59e0b;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Warning</div>
+                <div class="ds-swatch-value">#f59e0b</div>
+              </div>
+            </div>
+            <div class="ds-swatch">
+              <div class="ds-swatch-color" style="background:#ef4444;"></div>
+              <div class="ds-swatch-info">
+                <div class="ds-swatch-name">Danger</div>
+                <div class="ds-swatch-value">#ef4444</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           02. TYPOGRAPHY
+           ============================================================ -->
+      <section id="typography" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">02</span>
+          <h2 class="ds-section-title">Typography</h2>
+          <p class="ds-section-desc">Inter across all weights. Fluid sizing with clamp() for seamless scaling from mobile to desktop. Tight tracking on headlines, relaxed on body.</p>
+        </div>
+
+        <div class="ds-type-scale">
+          <div class="ds-type-row">
+            <span class="ds-type-label">Display</span>
+            <span class="ds-type-size">3.5–7rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-display); font-weight:900; letter-spacing:-0.04em;">COCHATECH</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">3XL</span>
+            <span class="ds-type-size">2.75–4.5rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-3xl); font-weight:800;">El hackathon</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">2XL</span>
+            <span class="ds-type-size">2–3.25rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-2xl); font-weight:800;">Section Title</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">XL</span>
+            <span class="ds-type-size">1.5–2.25rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-xl); font-weight:700;">Card Headline</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">LG</span>
+            <span class="ds-type-size">1.15–1.35rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-lg); font-weight:600;">Subsection Heading</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">Base</span>
+            <span class="ds-type-size">0.95–1.06rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-base); font-weight:400; color:var(--ds-text-secondary);">Body text for descriptions and paragraphs with comfortable reading.</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">SM</span>
+            <span class="ds-type-size">0.8–0.875rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-sm); font-weight:500; color:var(--ds-text-secondary);">Navigation links, card metadata, secondary info</span>
+          </div>
+          <div class="ds-type-row">
+            <span class="ds-type-label">XS / Label</span>
+            <span class="ds-type-size">0.65–0.75rem</span>
+            <span class="ds-type-sample" style="font-size:var(--ds-fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--ds-text-muted);">UPPERCASE LABEL &middot; BADGE TEXT &middot; STAT LABEL</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           03. SPACING
+           ============================================================ -->
+      <section id="spacing" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">03</span>
+          <h2 class="ds-section-title">Spacing Scale</h2>
+          <p class="ds-section-desc">A base-4 scale from 4px to 96px. Consistent rhythm across all components and layout gaps.</p>
+        </div>
+
+        <div class="ds-spacing-list">
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-1</span>
+            <div class="ds-spacing-bar" style="width:4px;"></div>
+            <span class="ds-spacing-px">4px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-2</span>
+            <div class="ds-spacing-bar" style="width:8px;"></div>
+            <span class="ds-spacing-px">8px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-3</span>
+            <div class="ds-spacing-bar" style="width:12px;"></div>
+            <span class="ds-spacing-px">12px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-4</span>
+            <div class="ds-spacing-bar" style="width:16px;"></div>
+            <span class="ds-spacing-px">16px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-6</span>
+            <div class="ds-spacing-bar" style="width:24px;"></div>
+            <span class="ds-spacing-px">24px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-8</span>
+            <div class="ds-spacing-bar" style="width:32px;"></div>
+            <span class="ds-spacing-px">32px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-10</span>
+            <div class="ds-spacing-bar" style="width:40px;"></div>
+            <span class="ds-spacing-px">40px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-12</span>
+            <div class="ds-spacing-bar" style="width:48px;"></div>
+            <span class="ds-spacing-px">48px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-16</span>
+            <div class="ds-spacing-bar" style="width:64px;"></div>
+            <span class="ds-spacing-px">64px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-20</span>
+            <div class="ds-spacing-bar" style="width:80px;"></div>
+            <span class="ds-spacing-px">80px</span>
+          </div>
+          <div class="ds-spacing-row">
+            <span class="ds-spacing-label">space-24</span>
+            <div class="ds-spacing-bar" style="width:96px;"></div>
+            <span class="ds-spacing-px">96px</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           04. BORDER RADIUS
+           ============================================================ -->
+      <section id="radius" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">04</span>
+          <h2 class="ds-section-title">Border Radius</h2>
+          <p class="ds-section-desc">From sharp utility corners to smooth containers. Larger radii for hero cards and sections, smaller for inline elements.</p>
+        </div>
+
+        <div class="ds-radius-grid">
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:6px;"></div>
+            <span class="ds-radius-name">SM</span>
+            <span class="ds-radius-value">6px</span>
+          </div>
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:10px;"></div>
+            <span class="ds-radius-name">MD</span>
+            <span class="ds-radius-value">10px</span>
+          </div>
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:16px;"></div>
+            <span class="ds-radius-name">LG</span>
+            <span class="ds-radius-value">16px</span>
+          </div>
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:24px;"></div>
+            <span class="ds-radius-name">XL</span>
+            <span class="ds-radius-value">24px</span>
+          </div>
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:32px;"></div>
+            <span class="ds-radius-name">2XL</span>
+            <span class="ds-radius-value">32px</span>
+          </div>
+          <div class="ds-radius-item">
+            <div class="ds-radius-box" style="border-radius:9999px;"></div>
+            <span class="ds-radius-name">Full</span>
+            <span class="ds-radius-value">9999px</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           05. BUTTONS
+           ============================================================ -->
+      <section id="buttons" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">05</span>
+          <h2 class="ds-section-title">Buttons</h2>
+          <p class="ds-section-desc">Five variants across three sizes. Primary cyan for CTAs, secondary outlined for supporting actions, ghost for navigation, and solid white for high-contrast hero buttons.</p>
+        </div>
+
+        <!-- Primary -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">Primary</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-primary ds-btn-lg">Aplicar Ahora</button>
+            <button class="ds-btn ds-btn-primary ds-btn-md">Aplicar Ahora</button>
+            <button class="ds-btn ds-btn-primary ds-btn-sm">Aplicar</button>
+          </div>
+        </div>
+
+        <!-- Secondary -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">Secondary (Outline)</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-secondary ds-btn-lg">Descargar Bases</button>
+            <button class="ds-btn ds-btn-secondary ds-btn-md">Descargar Bases</button>
+            <button class="ds-btn ds-btn-secondary ds-btn-sm">Descargar</button>
+          </div>
+        </div>
+
+        <!-- Ghost -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">Ghost</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-ghost ds-btn-lg">Ver Cronograma</button>
+            <button class="ds-btn ds-btn-ghost ds-btn-md">Ver Cronograma</button>
+            <button class="ds-btn ds-btn-ghost ds-btn-sm">Ver</button>
+          </div>
+        </div>
+
+        <!-- Solid White -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">Solid White (Hero CTA)</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-solid-white ds-btn-lg">Start Campaign</button>
+            <button class="ds-btn ds-btn-solid-white ds-btn-md">Start Campaign</button>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">Danger</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-danger ds-btn-md">Cancelar</button>
+            <button class="ds-btn ds-btn-danger ds-btn-sm">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- With Icon -->
+        <div class="ds-button-group">
+          <h3 class="ds-button-group-title">With Icon</h3>
+          <div class="ds-button-row">
+            <button class="ds-btn ds-btn-primary ds-btn-md">
+              Aplicar Ahora
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <button class="ds-btn ds-btn-ghost ds-btn-md">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar PDF
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           06. BADGES & PILLS
+           ============================================================ -->
+      <section id="badges" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">06</span>
+          <h2 class="ds-section-title">Badges &amp; Pills</h2>
+          <p class="ds-section-desc">Compact indicators for status, categories, and metadata. Glowing dots signal live or active states.</p>
+        </div>
+
+        <div class="ds-badge-row" style="margin-bottom: var(--ds-space-6);">
+          <span class="ds-badge ds-badge-outline">
+            <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+            Mayo 2026
+          </span>
+          <span class="ds-badge ds-badge-cyan">Hackathon</span>
+          <span class="ds-badge ds-badge-yellow">Convocatoria Abierta</span>
+          <span class="ds-badge ds-badge-success">
+            <span class="ds-badge-dot ds-badge-dot-green" aria-hidden="true"></span>
+            Inscripciones Abiertas
+          </span>
+        </div>
+
+        <div class="ds-badge-row">
+          <span class="ds-badge ds-badge-outline">Reto Empresarial</span>
+          <span class="ds-badge ds-badge-outline">Reto Bancario</span>
+          <span class="ds-badge ds-badge-outline">Reto Social</span>
+          <span class="ds-badge ds-badge-cyan">
+            <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+            En Vivo
+          </span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           07. GLASS CARDS
+           ============================================================ -->
+      <section id="cards" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">07</span>
+          <h2 class="ds-section-title">Glass Cards</h2>
+          <p class="ds-section-desc">Glassmorphism containers with blur backdrop, subtle borders, and lift-on-hover. Used for feature blocks, challenge categories, and info cards.</p>
+        </div>
+
+        <div class="ds-card-grid">
+          <div class="ds-glass-card">
+            <div class="ds-glass-card-icon ds-glass-card-icon-cyan" aria-hidden="true">&#127919;</div>
+            <h3>Retos Reales</h3>
+            <p>Problemas reales de empresas e instituciones bolivianas que necesitan soluciones tecnologicas innovadoras.</p>
+          </div>
+          <div class="ds-glass-card">
+            <div class="ds-glass-card-icon ds-glass-card-icon-yellow" aria-hidden="true">&#129309;</div>
+            <h3>Mentores Activos</h3>
+            <p>Expertos de industria que guian a los equipos durante las 48 horas del evento con retroalimentacion continua.</p>
+          </div>
+          <div class="ds-glass-card">
+            <div class="ds-glass-card-icon ds-glass-card-icon-white" aria-hidden="true">&#128640;</div>
+            <h3>Impacto Continuo</h3>
+            <p>Los mejores proyectos reciben seguimiento post-evento con acceso a incubadoras y redes de inversion.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           08. STAT BLOCKS
+           ============================================================ -->
+      <section id="stats" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">08</span>
+          <h2 class="ds-section-title">Stat Blocks</h2>
+          <p class="ds-section-desc">High-impact numbers for hero metrics, sponsor stats, and key data points. Large weight, tight leading, with suffix styling.</p>
+        </div>
+
+        <div class="ds-stat-grid">
+          <div class="ds-stat">
+            <div class="ds-stat-value">500<span class="suffix">+</span></div>
+            <div class="ds-stat-label">Participantes</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-value">9</div>
+            <div class="ds-stat-label">Retos Reales</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-value" style="color:var(--ds-cyan);">$15k</div>
+            <div class="ds-stat-label">En Premios</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-stat-value">48<span class="suffix">hrs</span></div>
+            <div class="ds-stat-label">De Innovacion</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           09. GRADIENT TEXT
+           ============================================================ -->
+      <section id="gradients" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">09</span>
+          <h2 class="ds-section-title">Text Effects</h2>
+          <p class="ds-section-desc">Gradient fills and ghost text for dramatic headings. Used sparingly on hero titles and section accents.</p>
+        </div>
+
+        <div class="ds-gradient-showcase">
+          <div class="ds-gradient-item">
+            <span class="ds-gradient-label">Cyan to White</span>
+            <span class="ds-gradient-text ds-grad-cyan-white">COCHATECH 2026</span>
+          </div>
+          <div class="ds-gradient-item">
+            <span class="ds-gradient-label">Cyan Fade</span>
+            <span class="ds-gradient-text ds-grad-cyan-fade">Innovacion Real</span>
+          </div>
+          <div class="ds-gradient-item">
+            <span class="ds-gradient-label">Yellow to Cyan</span>
+            <span class="ds-gradient-text ds-grad-yellow-cyan">36 Horas</span>
+          </div>
+          <div class="ds-gradient-item">
+            <span class="ds-gradient-label">White Fade</span>
+            <span class="ds-gradient-text ds-grad-white-muted">Cochabamba, Bolivia</span>
+          </div>
+          <div class="ds-gradient-item">
+            <span class="ds-gradient-label">Ghost Text</span>
+            <span class="ds-text-ghost">Digital Legacy</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           10. SHADOWS
+           ============================================================ -->
+      <section id="shadows" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">10</span>
+          <h2 class="ds-section-title">Shadows</h2>
+          <p class="ds-section-desc">Three elevation levels plus a cyan glow shadow for accented elements.</p>
+        </div>
+
+        <div class="ds-shadow-grid">
+          <div class="ds-shadow-demo" style="box-shadow: var(--ds-shadow-sm);">
+            <span>Small</span>
+            <span>shadow-sm</span>
+          </div>
+          <div class="ds-shadow-demo" style="box-shadow: var(--ds-shadow-md);">
+            <span>Medium</span>
+            <span>shadow-md</span>
+          </div>
+          <div class="ds-shadow-demo" style="box-shadow: var(--ds-shadow-lg);">
+            <span>Large</span>
+            <span>shadow-lg</span>
+          </div>
+          <div class="ds-shadow-demo" style="box-shadow: var(--ds-shadow-glow);">
+            <span>Glow</span>
+            <span>shadow-glow</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           11. GLOW EFFECTS
+           ============================================================ -->
+      <section id="glows" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">11</span>
+          <h2 class="ds-section-title">Ambient Glows</h2>
+          <p class="ds-section-desc">Blurred radial gradients used as decorative backgrounds. Create depth and atmosphere on hero and feature sections.</p>
+        </div>
+
+        <div class="ds-glow-grid">
+          <div class="ds-glow-demo ds-glow-cyan">
+            <span>Cyan Glow</span>
+            <span>Hero, Features</span>
+          </div>
+          <div class="ds-glow-demo ds-glow-yellow">
+            <span>Yellow Glow</span>
+            <span>Prizes, Alerts</span>
+          </div>
+          <div class="ds-glow-demo ds-glow-mixed">
+            <span>Mixed</span>
+            <span>Backgrounds</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           12. DIVIDERS
+           ============================================================ -->
+      <section id="dividers" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">12</span>
+          <h2 class="ds-section-title">Dividers</h2>
+          <p class="ds-section-desc">Subtle separators that respect the dark aesthetic. Three styles from minimal to decorative.</p>
+        </div>
+
+        <div class="ds-divider-list">
+          <div class="ds-divider-item">
+            <span class="ds-divider-label">Subtle</span>
+            <div class="ds-divider-subtle"></div>
+          </div>
+          <div class="ds-divider-item">
+            <span class="ds-divider-label">Glow</span>
+            <div class="ds-divider-glow"></div>
+          </div>
+          <div class="ds-divider-item">
+            <span class="ds-divider-label">Dot Center</span>
+            <div class="ds-divider-dot">
+              <span class="ds-divider-dot-inner"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           13. ANIMATIONS & MICRO-INTERACTIONS
+           ============================================================ -->
+      <section id="animations" class="ds-section">
+        <div class="ds-section-header">
+          <span class="ds-section-number">13</span>
+          <h2 class="ds-section-title">Micro-interactions</h2>
+          <p class="ds-section-desc">Hover effects that bring the interface to life. Each box demonstrates a different interaction pattern — hover to preview.</p>
+        </div>
+
+        <div class="ds-anim-grid">
+          <div class="ds-anim-box ds-anim-lift">
+            <span>Lift</span>
+            <span>translateY -8px</span>
+          </div>
+          <div class="ds-anim-box ds-anim-scale">
+            <span>Scale</span>
+            <span>scale(1.05)</span>
+          </div>
+          <div class="ds-anim-box ds-anim-glow">
+            <span>Glow</span>
+            <span>cyan shadow</span>
+          </div>
+          <div class="ds-anim-box ds-anim-pulse">
+            <span>Pulse</span>
+            <span>ring expand</span>
+          </div>
+          <div class="ds-anim-box ds-anim-shimmer">
+            <span>Shimmer</span>
+            <span>light sweep</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="ds-footer">
+      <p>COCHATECH 2026 &middot; <strong>Design System v1.0</strong> &middot; Internal Reference</p>
+    </footer>
+
+  </div>
+</body>
+</html>

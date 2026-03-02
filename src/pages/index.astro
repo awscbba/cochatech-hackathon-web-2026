@@ -1,17 +1,33 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Challenges from '../components/Challenges.astro';
+import Timeline from '../components/Timeline.astro';
+import Requirements from '../components/Requirements.astro';
+import Prizes from '../components/Prizes.astro';
+import Mentors from '../components/Mentors.astro';
+import Sponsors from '../components/Sponsors.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="COCHATECH 2026 - El Hackathon de Cochabamba"
+  description="El hackathon más importante de Bolivia. 36-48 horas para transformar ideas en soluciones reales que impacten a tu comunidad."
+>
+  <Navigation />
+  <main>
+    <Hero />
+    <About />
+    <Challenges />
+    <Timeline />
+    <Requirements />
+    <Prizes />
+    <Mentors />
+    <Sponsors />
+    <FAQ />
+  </main>
+  <Footer />
+</Layout>

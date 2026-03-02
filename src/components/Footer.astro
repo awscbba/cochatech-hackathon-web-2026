@@ -1,0 +1,326 @@
+---
+// Footer component with design system
+---
+
+<footer id="contacto" class="footer-section">
+  <div class="footer-container">
+    <!-- Footer Grid -->
+    <div class="footer-grid">
+      <!-- Contact Column -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">Contacto</h3>
+        <div class="footer-contact">
+          <div class="footer-contact-item">
+            <p class="footer-contact-label">Email</p>
+            <a
+              href="mailto:info@cochatech.com"
+              class="footer-contact-link"
+            >
+              info@cochatech.com
+            </a>
+          </div>
+          <div class="footer-contact-item">
+            <p class="footer-contact-label">WhatsApp</p>
+            <a
+              href="https://wa.me/591XXXXXXXXX"
+              class="footer-contact-link"
+            >
+              +591 XX XXX XXXX
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media Column -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">Síguenos</h3>
+        <div class="footer-social">
+          <a
+            href="https://instagram.com/cochatech"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-link"
+            title="Instagram"
+          >
+            📱
+          </a>
+          <a
+            href="https://linkedin.com/company/cochatech"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-link"
+            title="LinkedIn"
+          >
+            💼
+          </a>
+          <a
+            href="https://twitter.com/cochatech"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-link"
+            title="Twitter/X"
+          >
+            𝕏
+          </a>
+          <a
+            href="https://tiktok.com/@cochatech"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-link"
+            title="TikTok"
+          >
+            🎵
+          </a>
+        </div>
+      </div>
+
+      <!-- Institutions Column -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">Organizadores</h3>
+        <div class="footer-institutions">
+          <span class="footer-institution-badge">UCB</span>
+          <span class="footer-institution-badge">UMSS</span>
+          <span class="footer-institution-badge">UPB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider">
+      <!-- Copyright -->
+      <div class="footer-copyright-section">
+        <p class="footer-copyright-text">
+          &copy; 2026 COCHATECH. Todos los derechos reservados.
+        </p>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-legal-link">Privacidad</a>
+          <a href="#" class="footer-legal-link">Términos</a>
+          <a href="#" class="footer-legal-link">Código de Conducta</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="footer-back-to-top-wrapper">
+      <a href="#inicio" class="footer-back-to-top">
+        ↑ Volver al inicio
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :root {
+    --ds-bg-deep: #020b1c;
+    --ds-bg-dark-overlay: rgba(0, 0, 0, 0.5);
+    --ds-text-primary: #ffffff;
+    --ds-text-secondary: rgba(255, 255, 255, 0.6);
+    --ds-text-muted: rgba(255, 255, 255, 0.35);
+    --ds-cyan: #00d2ff;
+    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+    --ds-cyan-border: rgba(0, 210, 255, 0.2);
+    --ds-glass-bg: rgba(255, 255, 255, 0.03);
+    --ds-glass-border: rgba(255, 255, 255, 0.07);
+    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-fs-xs: clamp(0.65rem, 0.5vw + 0.4rem, 0.75rem);
+    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
+    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
+    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
+    --ds-radius-full: 9999px;
+    --ds-radius-lg: 16px;
+    --ds-space-2: 0.5rem;
+    --ds-space-3: 0.75rem;
+    --ds-space-4: 1rem;
+    --ds-space-6: 1.5rem;
+    --ds-space-8: 2rem;
+    --ds-space-12: 3rem;
+    --ds-space-16: 4rem;
+    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .footer-section {
+    padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
+    background: var(--ds-bg-dark-overlay);
+    border-top: 1px solid var(--ds-cyan-border);
+    font-family: var(--ds-font);
+  }
+
+  .footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* Footer Grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--ds-space-12);
+    margin-bottom: var(--ds-space-12);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--ds-space-8);
+    }
+  }
+
+  /* Column Styling */
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-column-title {
+    font-size: var(--ds-fs-lg);
+    font-weight: 700;
+    color: var(--ds-text-primary);
+    margin-bottom: var(--ds-space-6);
+    margin-top: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* Contact Column */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-4);
+  }
+
+  .footer-contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-2);
+  }
+
+  .footer-contact-label {
+    font-size: var(--ds-fs-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ds-text-secondary);
+    margin: 0;
+  }
+
+  .footer-contact-link {
+    font-size: var(--ds-fs-base);
+    color: var(--ds-cyan);
+    transition: color var(--ds-t-normal);
+    text-decoration: none;
+  }
+
+  .footer-contact-link:hover {
+    color: var(--ds-text-primary);
+  }
+
+  /* Social Media Column */
+  .footer-social {
+    display: flex;
+    gap: var(--ds-space-6);
+    flex-wrap: wrap;
+  }
+
+  .footer-social-link {
+    font-size: 1.5rem;
+    color: var(--ds-text-secondary);
+    transition: color var(--ds-t-normal);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-social-link:hover {
+    color: var(--ds-cyan);
+  }
+
+  /* Institutions Column */
+  .footer-institutions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ds-space-3);
+  }
+
+  .footer-institution-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ds-space-3) var(--ds-space-6);
+    background: var(--ds-glass-bg);
+    border-radius: var(--ds-radius-full);
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    font-weight: 500;
+  }
+
+  /* Divider Section */
+  .footer-divider {
+    border-top: 1px solid var(--ds-cyan-border);
+    padding-top: var(--ds-space-8);
+    margin-bottom: var(--ds-space-8);
+  }
+
+  .footer-copyright-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-6);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px) {
+    .footer-copyright-section {
+      flex-direction: row;
+    }
+  }
+
+  .footer-copyright-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-muted);
+    margin: 0;
+  }
+
+  .footer-legal-links {
+    display: flex;
+    gap: var(--ds-space-6);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-legal-link {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-muted);
+    transition: color var(--ds-t-normal);
+    text-decoration: none;
+  }
+
+  .footer-legal-link:hover {
+    color: var(--ds-cyan);
+  }
+
+  /* Back to Top Button */
+  .footer-back-to-top-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--ds-space-8);
+  }
+
+  .footer-back-to-top {
+    display: inline-block;
+    padding: var(--ds-space-2) var(--ds-space-6);
+    border: 1px solid var(--ds-cyan-dim);
+    border-radius: var(--ds-radius-lg);
+    color: var(--ds-cyan);
+    font-size: var(--ds-fs-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: all var(--ds-t-normal);
+    text-decoration: none;
+  }
+
+  .footer-back-to-top:hover {
+    border-color: var(--ds-cyan);
+    background: var(--ds-cyan-dim);
+  }
+</style>

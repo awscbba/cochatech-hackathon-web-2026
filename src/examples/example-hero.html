@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteCallab - Premier Influence Network</title>
+    <style>
+        /* ==========================================================================
+           1. CSS Custom Properties (Variables) & Theming
+           ========================================================================== */
+        :root {
+            /* Color Palette */
+            --bg-base: #050505;
+            --bg-surface: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            
+            /* Accents */
+            --accent-gold-start: #fef08a;
+            --accent-gold-end: #ca8a04;
+            --accent-gold: #eab308;
+            --accent-green: #22c55e;
+            
+            /* Glassmorphism & UI Elements */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg-hover: rgba(255, 255, 255, 0.06);
+            --inner-card-bg: rgba(255, 255, 255, 0.05);
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-display: 'Clash Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Fallback to system sans if display font unavailable */
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 5rem;
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Container Max Width */
+            --container-max: 1440px;
+        }
+
+        /* ==========================================================================
+           2. Reset & Base Styles
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            /* Subtle radial gradient to mimic deep space/lighting */
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, var(--bg-base) 50%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        ul { list-style: none; }
+        
+        button {
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Accessibility: Focus states */
+        :focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* ==========================================================================
+           3. Layout Containers
+           ========================================================================== */
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* Breakpoint: Tablet (768px) */
+        @media (min-width: 768px) {
+            .container { padding: 0 var(--space-xl); }
+        }
+
+        /* Breakpoint: Desktop (1024px) */
+        @media (min-width: 1024px) {
+            .container { padding: 0 var(--space-3xl); }
+        }
+
+        /* ==========================================================================
+           4. Header & Navigation
+           ========================================================================== */
+        .site-header {
+            padding: var(--space-lg) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-weight: 700;
+            font-size: 1.125rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-gold);
+        }
+
+        /* Desktop Navigation */
+        .main-nav {
+            display: none; /* Hidden on mobile */
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .main-nav a {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .main-nav a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Header Actions */
+        .btn-outline {
+            display: none; /* Hide login button on smallest screens to save space */
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.5rem 1.25rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 9999px;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .btn-outline:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-outline svg {
+            width: 14px;
+            height: 14px;
+            transition: transform var(--transition-fast);
+        }
+
+        .btn-outline:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Breakpoint: Tablet (768px) */
+        @media (min-width: 768px) {
+            .main-nav { display: block; }
+            .btn-outline { display: flex; }
+        }
+
+        /* ==========================================================================
+           5. Hero Section
+           ========================================================================== */
+        .hero {
+            padding: var(--space-3xl) 0;
+            min-height: calc(100vh - 100px); /* Subtract header approx height */
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3xl);
+            align-items: center;
+            position: relative;
+        }
+
+        /* Breakpoint: Desktop (1024px) */
+        @media (min-width: 1024px) {
+            .hero {
+                grid-template-columns: 1.2fr 0.8fr; /* Left side slightly wider */
+                gap: var(--space-xl);
+            }
+        }
+
+        /* --- Hero Content (Left) --- */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            animation: fadeUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.35rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 9999px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            width: max-content;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-gold);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            /* Fluid typography using clamp */
+            font-size: clamp(3rem, 8vw, 7rem); 
+            line-height: 0.85;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 0;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title-line { display: block; }
+
+        .title-solid { color: var(--text-primary); }
+        
+        .title-ghost { 
+            /* Stylized grey/ghost text */
+            color: #4b5563; 
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .title-gradient {
+            background: linear-gradient(90deg, var(--accent-gold-start), var(--accent-gold-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .hero-actions-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin-top: var(--space-sm);
+        }
+
+        /* Breakpoint: Mobile Landscape / Tablet */
+        @media (min-width: 480px) {
+            .hero-actions-wrapper {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--text-primary);
+            color: var(--bg-base);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Social Proof (Avatars) */
+        .social-proof {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .avatar-group {
+            display: flex;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-base);
+            background-color: #333;
+            margin-left: -12px;
+            position: relative;
+            /* Placeholder styling using gradients since external images aren't allowed */
+            background-size: cover;
+            background-position: center;
+        }
+        .avatar:first-child { margin-left: 0; background-image: radial-gradient(circle at top left, #6b7280, #111827); z-index: 3;}
+        .avatar:nth-child(2) { background-image: radial-gradient(circle at bottom right, #9ca3af, #374151); z-index: 2;}
+        .avatar:nth-child(3) { background-image: radial-gradient(circle at center, #d1d5db, #4b5563); z-index: 1;}
+
+        .social-proof-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* --- Hero Visual (Right) --- */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Perspective container for 3D card */
+            perspective: 1000px;
+            animation: fadeLeft 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            width: 100%;
+            max-width: 400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: var(--space-xl);
+            /* 3D Rotation to match screenshot */
+            transform: rotateY(-15deg) rotateX(5deg) rotateZ(2deg);
+            box-shadow: 
+                -20px 20px 50px rgba(0,0,0,0.5),
+                inset 0 0 0 1px rgba(255,255,255,0.05);
+            transition: transform var(--transition-slow);
+        }
+
+        /* Interactive tilt on hover for modern feel */
+        .hero-visual:hover .glass-card {
+            transform: rotateY(-5deg) rotateX(2deg) rotateZ(0deg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-xl);
+        }
+
+        .card-title-group h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card-title-group p {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent-gold);
+        }
+
+        .metric-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .metric-value-positive {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .progress-bar-track {
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 75%; /* Arbitrary value for visual */
+            background-color: var(--accent-gold);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        /* Micro-animation for progress bar */
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+
+        .stat-box {
+            background: var(--inner-card-bg);
+            border-radius: 12px;
+            padding: var(--space-md);
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .stat-label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Decorative background element */
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-gold);
+            filter: blur(150px);
+            opacity: 0.05;
+            border-radius: 50%;
+            z-index: -1;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+
+        /* ==========================================================================
+           6. Keyframe Animations
+           ========================================================================== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        /* Utility for screen readers only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="site-header" aria-label="Primary Navigation">
+            <a href="/" class="logo" aria-label="EliteCallab Home">
+                <!-- Inline SVG Logo (Shield/Crown approximation) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M12 8v4"></path>
+                    <path d="M12 16h.01"></path>
+                </svg>
+                ELITECALLAB
+            </a>
+
+            <nav class="main-nav" aria-label="Main menu">
+                <ul>
+                    <li><a href="#creators">Creators</a></li>
+                    <li><a href="#metrics">Metrics</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a href="/login" class="btn-outline">
+                Agency Login
+                <!-- Inline SVG Arrow -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main id="main-content">
+            <section class="hero" aria-labelledby="hero-heading">
+                <!-- Background Decoration -->
+                <div class="bg-glow" aria-hidden="true"></div>
+
+                <!-- LEFT COLUMN: Typography & CTAs -->
+                <div class="hero-content">
+                    <div class="badge" role="text">
+                        <span class="badge-dot" aria-hidden="true"></span>
+                        Premier Influence Network
+                    </div>
+
+                    <h1 id="hero-heading" class="hero-title">
+                        <span class="title-line title-solid">Curating</span>
+                        <span class="title-line title-ghost">Digital</span>
+                        <span class="title-line title-gradient">Legacy</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        We architect connections between elite global brands and the creators who shape culture. Precision targeting, measurable impact.
+                    </p>
+
+                    <div class="hero-actions-wrapper">
+                        <a href="#start" class="btn-primary" role="button">
+                            Start Campaign
+                        </a>
+                        
+                        <div class="social-proof">
+                            <div class="avatar-group" aria-hidden="true">
+                                <div class="avatar"></div>
+                                <div class="avatar"></div>
+                                <div class="avatar"></div>
+                            </div>
+                            <span class="social-proof-text">350+ Elite Creators</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Glassmorphism Analytics Card -->
+                <div class="hero-visual" aria-hidden="true">
+                    <!-- Aria-hidden is true here because it's a decorative illustration of data, 
+                         real semantic data should be presented elsewhere or available via screen reader only text if crucial -->
+                    <div class="glass-card">
+                        
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3>Viral Impact</h3>
+                                <p>Campaign Analytics</p>
+                            </div>
+                            <div class="card-icon">
+                                <!-- Bar Chart Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="metric-group">
+                            <div class="metric-header">
+                                <span>Engagement Rate</span>
+                                <span class="metric-value-positive">+12.5%</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" style="width: 78%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-label">Reach</span>
+                                <span class="stat-number">2.4M</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-label">ROI</span>
+                                <span class="stat-number">4.2x</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

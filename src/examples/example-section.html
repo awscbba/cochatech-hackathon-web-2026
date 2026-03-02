@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curated Talent Platform</title>
+    <style>
+        /* ==========================================================================
+           CSS Custom Properties & Tokens
+           ========================================================================== */
+        :root {
+            /* Color Palette */
+            --clr-bg-main: #060606;
+            --clr-bg-card-fallback: #1a1a1a;
+            --clr-text-primary: #ffffff;
+            --clr-text-secondary: #9ca3af;
+            --clr-accent: #dcb360; /* Adjusted gold for WCAG AA on dark bg */
+            --clr-accent-hover: #f1c97a;
+            
+            /* Glassmorphism Tokens */
+            --glass-bg: rgba(10, 10, 10, 0.65);
+            --glass-blur: 12px;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            
+            /* Typography using clamp() for fluid scaling */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --fs-xs: clamp(0.7rem, 0.5vw + 0.5rem, 0.75rem);
+            --fs-sm: clamp(0.8rem, 0.6vw + 0.6rem, 0.875rem);
+            --fs-base: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+            --fs-lg: clamp(1.25rem, 2vw + 1rem, 1.5rem);
+            --fs-xl: clamp(2rem, 4vw + 1rem, 3rem);
+            --fs-stat: clamp(2.5rem, 5vw + 1.5rem, 4.5rem);
+
+            /* Spacing & Layout */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: clamp(1.5rem, 3vw, 2.5rem);
+            --space-lg: clamp(3rem, 6vw, 5rem);
+            --space-xl: clamp(5rem, 10vw, 8rem);
+            
+            --container-max: 1440px;
+            --container-padding: clamp(1rem, 5vw, 4rem);
+            
+            /* Animations */
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           Reset & Base Styles
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--clr-bg-main);
+            color: var(--clr-text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Accessibility: Focus States */
+        :focus-visible {
+            outline: 2px solid var(--clr-accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* ==========================================================================
+           Section: Statistics Header
+           ========================================================================== */
+        .stats-section {
+            padding-top: var(--space-xl);
+            padding-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: var(--space-lg);
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Vertical divider for larger screens */
+        @media (min-width: 768px) {
+            .stat-item:not(:first-child)::before {
+                content: '';
+                position: absolute;
+                left: calc(var(--space-md) * -0.5);
+                top: 10%;
+                height: 80%;
+                width: 1px;
+                background-color: var(--glass-border);
+            }
+        }
+
+        .stat-value {
+            font-size: var(--fs-stat);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .stat-suffix {
+            font-size: 0.4em;
+            font-weight: 600;
+            color: var(--clr-text-secondary);
+            margin-top: 0.1em;
+            margin-left: 2px;
+        }
+
+        .stat-label {
+            font-size: var(--fs-xs);
+            color: var(--clr-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            margin-top: var(--space-xs);
+        }
+
+        /* ==========================================================================
+           Section: Curated Talent
+           ========================================================================== */
+        .talent-section {
+            padding-top: var(--space-lg);
+            padding-bottom: var(--space-lg);
+        }
+
+        .talent-header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        @media (min-width: 768px) {
+            .talent-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+
+        .talent-title-area h2 {
+            font-size: var(--fs-xl);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-xs);
+        }
+
+        .talent-title-area p {
+            color: var(--clr-text-secondary);
+            font-size: var(--fs-base);
+            max-width: 40ch;
+        }
+
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--clr-accent);
+            font-size: var(--fs-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color var(--transition-fast);
+        }
+
+        .view-all-link:hover {
+            color: var(--clr-accent-hover);
+        }
+
+        .view-all-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform var(--transition-fast);
+        }
+
+        .view-all-link:hover svg {
+            transform: translate(2px, -2px);
+        }
+
+        /* ==========================================================================
+           Talent Grid & Cards (Glassmorphism Applied Here)
+           ========================================================================== */
+        .talent-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .talent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .talent-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .talent-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            background-color: var(--clr-bg-card-fallback);
+            cursor: pointer;
+            /* Micro-animation base */
+            transform: translateY(0);
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+
+        .talent-card:hover, .talent-card:focus-within {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .talent-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+        }
+
+        .talent-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Gradient to ensure text readability regardless of image */
+        .card-gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Info Container */
+        .card-info {
+            position: absolute;
+            bottom: var(--space-sm);
+            left: var(--space-sm);
+            right: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: 12px;
+            z-index: 3;
+            
+            /* Glassmorphism effects */
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            
+            transition: background var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .talent-card:hover .card-info {
+            background: rgba(20, 20, 20, 0.8);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .card-name {
+            font-size: var(--fs-lg);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin: 4px 0;
+        }
+
+        /* Extending link to cover the whole card for better UX */
+        .card-name a::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+
+        .card-metrics {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--clr-accent);
+            font-size: var(--fs-xs);
+            font-weight: 600;
+        }
+
+        .metric svg {
+            width: 12px;
+            height: 12px;
+            stroke-width: 2.5;
+        }
+
+        /* ==========================================================================
+           Section: Recent Collaborations (Footer Area)
+           ========================================================================== */
+        .collab-section {
+            padding-top: var(--space-lg);
+            padding-bottom: var(--space-xl);
+            text-align: center;
+        }
+
+        .collab-section h2 {
+            font-size: var(--fs-xl);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+        
+        .collab-section h2 span {
+            color: var(--clr-accent);
+        }
+
+        /* SVG Icons defined inline */
+        .hidden-svgs {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Inline SVGs for reuse -->
+    <svg class="hidden-svgs" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <path d="M9 14l2-2 4 4 4-8"></path>
+            <path d="M9 14v4"></path>
+            <path d="M11 12v6"></path>
+            <path d="M15 16v2"></path>
+            <path d="M19 8v10"></path>
+        </symbol>
+        <symbol id="icon-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+        </symbol>
+    </svg>
+
+    <main class="container">
+        
+        <!-- Platform Statistics Landmark -->
+        <section id="stats" class="stats-section" aria-label="Platform Statistics">
+            <ul class="stats-grid">
+                <li class="stat-item">
+                    <div class="stat-value">350<span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Vetted Creators</div>
+                </li>
+                <li class="stat-item">
+                    <div class="stat-value">200<span class="stat-suffix">+</span></div>
+                    <div class="stat-label">Global Brands</div>
+                </li>
+                <li class="stat-item">
+                    <div class="stat-value">85<span class="stat-suffix">M</span></div>
+                    <div class="stat-label">Total Reach</div>
+                </li>
+                <li class="stat-item">
+                    <div class="stat-value">4.8<span class="stat-suffix">/5</span></div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Curated Talent Landmark -->
+        <section id="talent" class="talent-section" aria-label="Curated Talent Roster">
+            <header class="talent-header">
+                <div class="talent-title-area">
+                    <h2>Curated Talent</h2>
+                    <p>Hand-selected creators who don't just reach audiences—they move them.</p>
+                </div>
+                <a href="#roster" class="view-all-link" aria-label="View all talent roster">
+                    View All Roster
+                    <svg><use href="#icon-arrow-up-right"></use></svg>
+                </a>
+            </header>
+
+            <div class="talent-grid">
+                <!-- Card 1 -->
+                <article class="talent-card">
+                    <!-- Using placeholder images that match the aesthetic of the original -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" alt="Portrait of Elena Rostova wearing sunglasses" loading="lazy">
+                    <div class="card-gradient-overlay"></div>
+                    
+                    <div class="card-info">
+                        <span class="card-tag">Fashion</span>
+                        <h3 class="card-name"><a href="#elena">Elena Rostova</a></h3>
+                        <div class="card-metrics">
+                            <span class="metric" aria-label="2.1 Million Followers">
+                                <svg><use href="#icon-user"></use></svg> 2.1M
+                            </span>
+                            <span class="metric" aria-label="4.8% Engagement Rate">
+                                <svg><use href="#icon-chart"></use></svg> 4.8% ER
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="talent-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=600" alt="Portrait of Marcus Chen smiling" loading="lazy">
+                    <div class="card-gradient-overlay"></div>
+                    
+                    <div class="card-info">
+                        <span class="card-tag">Tech</span>
+                        <h3 class="card-name"><a href="#marcus">Marcus Chen</a></h3>
+                        <div class="card-metrics">
+                            <span class="metric" aria-label="850 Thousand Followers">
+                                <svg><use href="#icon-user"></use></svg> 850K
+                            </span>
+                            <span class="metric" aria-label="8.2% Engagement Rate">
+                                <svg><use href="#icon-chart"></use></svg> 8.2% ER
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="talent-card">
+                    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=600" alt="Baby floating in a pool, representing Sarah & Tom's lifestyle content" loading="lazy">
+                    <div class="card-gradient-overlay"></div>
+                    
+                    <div class="card-info">
+                        <span class="card-tag">Lifestyle</span>
+                        <h3 class="card-name"><a href="#sarah-tom">Sarah & Tom</a></h3>
+                        <div class="card-metrics">
+                            <span class="metric" aria-label="1.2 Million Followers">
+                                <svg><use href="#icon-user"></use></svg> 1.2M
+                            </span>
+                            <span class="metric" aria-label="5.5% Engagement Rate">
+                                <svg><use href="#icon-chart"></use></svg> 5.5% ER
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="talent-card">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600" alt="Portrait of Javier K. wearing a hat" loading="lazy">
+                    <div class="card-gradient-overlay"></div>
+                    
+                    <div class="card-info">
+                        <span class="card-tag">Streetwear</span>
+                        <h3 class="card-name"><a href="#javier">Javier K.</a></h3>
+                        <div class="card-metrics">
+                            <span class="metric" aria-label="620 Thousand Followers">
+                                <svg><use href="#icon-user"></use></svg> 620K
+                            </span>
+                            <span class="metric" aria-label="9.1% Engagement Rate">
+                                <svg><use href="#icon-chart"></use></svg> 9.1% ER
+                            </span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Recent Collaborations Landmark -->
+        <section id="collaborations" class="collab-section" aria-label="Recent Collaborations">
+            <h2>Recent <span>Collaborations</span></h2>
+        </section>
+
+    </main>
+
+</body>
+</html>
