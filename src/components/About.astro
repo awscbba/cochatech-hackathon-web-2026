@@ -5,7 +5,7 @@
 <section id="sobre-el-evento" class="about-section">
   <div class="about-container">
     <!-- Header -->
-    <div class="about-header">
+    <div class="about-header" data-animate>
       <h2 class="about-title">
         ¿Qué es <span class="about-accent">COCHATECH?</span>
       </h2>
@@ -20,7 +20,7 @@
     <!-- Feature Cards Grid -->
     <div class="about-grid">
       <!-- Card 1: Real Challenges -->
-      <div class="about-card">
+      <div class="about-card" data-animate data-animate-delay="0">
         <div class="about-card-icon about-card-icon-cyan">🎯</div>
         <h3 class="about-card-title">Retos Reales</h3>
         <p class="about-card-text">
@@ -29,7 +29,7 @@
       </div>
 
       <!-- Card 2: Active Mentors -->
-      <div class="about-card">
+      <div class="about-card" data-animate data-animate-delay="120">
         <div class="about-card-icon about-card-icon-yellow">🤝</div>
         <h3 class="about-card-title">Mentores Activos</h3>
         <p class="about-card-text">
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Card 3: Lasting Impact -->
-      <div class="about-card">
+      <div class="about-card" data-animate data-animate-delay="240">
         <div class="about-card-icon about-card-icon-white">🚀</div>
         <h3 class="about-card-title">Impacto Continuo</h3>
         <p class="about-card-text">
@@ -87,7 +87,7 @@
 
   .about-section {
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
-    background: var(--ds-bg-deep);
+    background: var(--ds-bg-surface);
     font-family: var(--ds-font);
   }
 
