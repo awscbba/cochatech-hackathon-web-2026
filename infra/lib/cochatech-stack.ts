@@ -83,7 +83,7 @@ export class CochaTechStack extends cdk.Stack {
             "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
           },
           StringLike: {
-            "token.actions.githubusercontent.com:sub": `repo:${props.githubOrg}/${props.githubRepo}:ref:refs/heads/main`,
+            "token.actions.githubusercontent.com:sub": `repo:${props.githubOrg}/${props.githubRepo}:*`,
           },
         },
         "sts:AssumeRoleWithWebIdentity"
@@ -93,6 +93,7 @@ export class CochaTechStack extends cdk.Stack {
 
     deployRole.addToPolicy(
       new iam.PolicyStatement({
+        sid: "AmplifyDeploy",
         effect: iam.Effect.ALLOW,
         actions: [
           "amplify:CreateDeployment",
@@ -103,6 +104,19 @@ export class CochaTechStack extends cdk.Stack {
         resources: [
           `arn:aws:amplify:${this.region}:${this.account}:apps/${amplifyApp.attrAppId}/*`,
           `arn:aws:amplify:${this.region}:${this.account}:apps/${amplifyApp.attrAppId}`,
+        ],
+      })
+    );
+
+    deployRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "CDKDeploy",
+        effect: iam.Effect.ALLOW,
+        actions: [
+          "sts:AssumeRole",
+        ],
+        resources: [
+          `arn:aws:iam::${this.account}:role/cdk-*`,
         ],
       })
     );
