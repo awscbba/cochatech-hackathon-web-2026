@@ -1,5 +1,8 @@
 ---
-// Sponsors/Allies section with design system
+import sponsorsData from '../data/sponsors.json';
+const { main, coOrganizers } = sponsorsData.organizers;
+const allies = sponsorsData.allies;
+const international = sponsorsData.international;
 ---
 
 <section id="sponsors" class="sponsors-section">
@@ -7,7 +10,7 @@
     <!-- Header -->
     <div class="sponsors-header">
       <h2 class="sponsors-title">
-        <span class="sponsors-accent">Nuestros Aliados</span>
+        <span class="sponsors-accent">Organizadores</span>
       </h2>
       <p class="sponsors-description">
         Organizaciones e instituciones que creen en la innovación para Bolivia
@@ -17,36 +20,59 @@
     <!-- Organizers Tier -->
     <div class="sponsors-tier">
       <h3 class="sponsors-tier-title">Organizadores</h3>
+
+      <!-- Main organizer: UCB alone -->
+      <div class="sponsors-tier-grid sponsors-tier-grid-lg sponsors-main-organizer">
+        <a
+          href={main.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sponsors-logo-card sponsors-logo-card-main"
+          aria-label={main.name}
+        >
+          <img src={main.logoDesktop} alt={main.name} class="sponsors-logo-img sponsors-ucb-logo" />
+        </a>
+      </div>
+
+      <!-- Co-organizers row -->
       <div class="sponsors-tier-grid sponsors-tier-grid-lg">
-        <div class="sponsors-logo-card">
-          <span>UCB</span>
-        </div>
-        <div class="sponsors-logo-card">
-          <span>UMSS</span>
-        </div>
-        <div class="sponsors-logo-card">
-          <span>UPB</span>
-        </div>
+        {coOrganizers.map((org) => (
+          <a
+            href={org.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sponsors-logo-card sponsors-logo-card-co"
+            aria-label={org.name}
+          >
+            <img src={org.logo} alt={org.name} class="sponsors-logo-img sponsors-logo-img-co" />
+          </a>
+        ))}
       </div>
     </div>
 
-    <!-- Banking Partners Tier -->
-    <div class="sponsors-tier">
-      <h3 class="sponsors-tier-title">Aliados Financieros</h3>
-      <div class="sponsors-tier-grid sponsors-tier-grid-md">
-        <div class="sponsors-logo-card sponsors-logo-card-sm">
-          <span>Banco 1</span>
-        </div>
-        <div class="sponsors-logo-card sponsors-logo-card-sm">
-          <span>Banco 2</span>
-        </div>
-        <div class="sponsors-logo-card sponsors-logo-card-sm">
-          <span>Banco 3</span>
+    
+
+    <!-- Allies Tier -->
+    {allies.length > 0 && (
+      <div class="sponsors-tier">
+        <h3 class="sponsors-tier-title">Aliados</h3>
+        <div class="sponsors-allies-grid">
+          {allies.map((ally) => (
+            <a
+              href={ally.website || undefined}
+              target={ally.website ? "_blank" : undefined}
+              rel={ally.website ? "noopener noreferrer" : undefined}
+              class="sponsors-logo-card sponsors-logo-card-ally"
+              aria-label={ally.name}
+            >
+              <img src={ally.logo} alt={ally.name} class="sponsors-logo-img sponsors-logo-img-ally" />
+            </a>
+          ))}
         </div>
       </div>
-    </div>
+    )}
 
-    <!-- Technology & Social Partners Tier -->
+    <!-- Technology & Social Partners Tier 
     <div class="sponsors-tier">
       <h3 class="sponsors-tier-title">Socios Tecnológicos y Sociales</h3>
       <div class="sponsors-tier-grid sponsors-tier-grid-sm">
@@ -63,26 +89,27 @@
           <span>Social Partner 2</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- International Partners Tier -->
-    <div class="sponsors-tier">
-      <h3 class="sponsors-tier-title">Socios Internacionales</h3>
-      <div class="sponsors-tier-grid sponsors-tier-grid-sm">
-        <div class="sponsors-logo-card sponsors-logo-card-xs">
-          <span>Intl Partner 1</span>
-        </div>
-        <div class="sponsors-logo-card sponsors-logo-card-xs">
-          <span>Intl Partner 2</span>
-        </div>
-        <div class="sponsors-logo-card sponsors-logo-card-xs">
-          <span>Intl Partner 3</span>
-        </div>
-        <div class="sponsors-logo-card sponsors-logo-card-xs">
-          <span>Intl Partner 4</span>
+    {international.length > 0 && (
+      <div class="sponsors-tier">
+        <h3 class="sponsors-tier-title">Aliados Internacionales</h3>
+        <div class="sponsors-allies-grid">
+          {international.map((partner) => (
+            <a
+              href={partner.website || undefined}
+              target={partner.website ? "_blank" : undefined}
+              rel={partner.website ? "noopener noreferrer" : undefined}
+              class="sponsors-logo-card sponsors-logo-card-ally"
+              aria-label={partner.name}
+            >
+              <img src={partner.logo} alt={partner.name} class="sponsors-logo-img sponsors-logo-img-ally" />
+            </a>
+          ))}
         </div>
       </div>
-    </div>
+    )}
   </div>
 </section>
 
@@ -212,6 +239,10 @@
   }
 
   /* Logo cards */
+  a.sponsors-logo-card {
+    text-decoration: none;
+  }
+
   .sponsors-logo-card {
     display: flex;
     align-items: center;
@@ -221,13 +252,112 @@
     border: 1px solid var(--ds-glass-border);
     border-radius: var(--ds-radius-lg);
     transition: all var(--ds-t-normal);
-    height: 96px;
-    min-width: 120px;
+    height: 110px;
+    min-width: 200px;
+    width: 100%;
     font-weight: 700;
     color: var(--ds-text-primary);
     font-size: var(--ds-fs-lg);
     text-align: center;
     cursor: pointer;
+  }
+
+  .sponsors-main-organizer {
+    margin-bottom: var(--ds-space-8);
+  }
+
+  .sponsors-logo-card-main {
+    width: 100%;
+    height: 140px;
+    padding: var(--ds-space-6) var(--ds-space-8);
+    border-color: rgba(0, 210, 255, 0.2);
+  }
+
+  .sponsors-ucb-logo {
+    max-height: 100px;
+    max-width: 90%;
+  }
+
+  @media (min-width: 640px) {
+    .sponsors-logo-card-main {
+      height: 180px;
+      width: 100%;
+    }
+
+    .sponsors-tier-grid-lg.sponsors-main-organizer {
+      flex-direction: column;
+    }
+  }
+
+  .sponsors-logo-img {
+    max-width: 100%;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(1) saturate(1);
+    transition: filter var(--ds-t-normal);
+  }
+
+  .sponsors-logo-card-co {
+    height: 140px;
+    min-width: 200px;
+    padding: var(--ds-space-6);
+    text-decoration: none;
+  }
+
+  .sponsors-logo-img-co {
+    max-height: 100px;
+    max-width: 180px;
+  }
+
+  @media (min-width: 640px) {
+    .sponsors-logo-card-co {
+      height: 160px;
+      min-width: 240px;
+    }
+
+    .sponsors-logo-img-co {
+      max-height: 120px;
+      max-width: 220px;
+    }
+  }
+
+  /* Allies grid */
+  .sponsors-allies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--ds-space-4);
+  }
+
+  @media (min-width: 640px) {
+    .sponsors-allies-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sponsors-allies-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  .sponsors-logo-card-ally {
+    height: 100px;
+    width: 100%;
+    min-width: unset;
+    padding: var(--ds-space-4);
+    text-decoration: none;
+  }
+
+  .sponsors-logo-img-ally {
+    max-height: 64px;
+    max-width: 90%;
+    object-fit: contain;
+  }
+
+  .sponsors-logo-card:hover .sponsors-logo-img {
+    filter: brightness(1.1) saturate(1.1);
   }
 
   .sponsors-logo-card:hover {
@@ -253,10 +383,29 @@
 
   @media (max-width: 640px) {
     .sponsors-logo-card {
-      height: 80px;
+      height: auto;
+      min-height: 120px;
       min-width: auto;
-      flex: 1 1 calc(50% - 0.75rem);
+      width: 100%;
+      padding: var(--ds-space-6) var(--ds-space-4);
       font-size: var(--ds-fs-base);
+    }
+
+    .sponsors-logo-card-co {
+      height: auto;
+      min-height: 130px;
+      min-width: auto;
+      width: 100%;
+    }
+
+    .sponsors-logo-img-co {
+      max-height: 90px;
+      max-width: 90%;
+    }
+
+    .sponsors-tier-grid-lg {
+      flex-direction: column;
+      align-items: stretch;
     }
 
     .sponsors-logo-card-sm {
