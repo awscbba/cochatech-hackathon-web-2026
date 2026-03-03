@@ -66,11 +66,13 @@ export class CochaTechStack extends cdk.Stack {
     });
     domain.addDependency(mainBranch);
 
-    // --- GitHub Actions OIDC ---
-    const ghProvider = new iam.OpenIdConnectProvider(this, "GitHubOidc", {
-      url: "https://token.actions.githubusercontent.com",
-      clientIds: ["sts.amazonaws.com"],
-    });
+    // --- GitHub Actions OIDC (import existing provider) ---
+    const ghProviderArn = `arn:aws:iam::${this.account}:oidc-provider/token.actions.githubusercontent.com`;
+    const ghProvider = iam.OpenIdConnectProvider.fromOpenIdConnectProviderArn(
+      this,
+      "GitHubOidc",
+      ghProviderArn
+    );
 
     const deployRole = new iam.Role(this, "GitHubActionsDeployRole", {
       roleName: "cochatech-github-actions-deploy",

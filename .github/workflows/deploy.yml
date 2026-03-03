@@ -1,8 +1,10 @@
-name: Deploy to Amplify
+name: Deploy Site to Amplify
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'infra/**'
 
 permissions:
   contents: read
@@ -41,7 +43,6 @@ jobs:
         env:
           AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
         run: |
-          # Create a new manual deployment
           DEPLOYMENT=$(aws amplify create-deployment \
             --app-id "$AMPLIFY_APP_ID" \
             --branch-name main \
@@ -51,11 +52,9 @@ jobs:
           ZIP_URL=$(echo "$DEPLOYMENT" | jq -r '.zipUploadUrl')
           JOB_ID=$(echo "$DEPLOYMENT" | jq -r '.jobId')
 
-          # Zip and upload the build output
           cd dist && zip -r ../deploy.zip . && cd ..
           curl -T deploy.zip "$ZIP_URL"
 
-          # Start the deployment
           aws amplify start-deployment \
             --app-id "$AMPLIFY_APP_ID" \
             --branch-name main \
