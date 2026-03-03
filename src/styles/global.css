@@ -547,3 +547,32 @@ section {
 .ds-transition-normal {
   transition: all var(--ds-t-normal);
 }
+
+/* ================================================================
+   SCROLL ANIMATIONS
+   ================================================================ */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity  0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Glow utilities */
+.ds-glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
+}

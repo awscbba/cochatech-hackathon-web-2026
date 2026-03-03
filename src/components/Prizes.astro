@@ -48,7 +48,7 @@ const textToneClass: Record<PrizeTone, string> = {
   <div class="prizes-container">
 
     <!-- Header -->
-    <div class="prizes-header">
+    <div class="prizes-header" data-animate>
       <h2 class="prizes-title">
         <span class="prizes-accent">Premios</span> y Reconocimiento
       </h2>
@@ -58,7 +58,7 @@ const textToneClass: Record<PrizeTone, string> = {
     </div>
 
     <!-- Featured Prize Card -->
-    <div class="prizes-featured">
+    <div class="prizes-featured" data-animate data-animate-delay="100">
       <div class="prizes-featured-content">
         <!-- Left Side: Description -->
         <div class="prizes-featured-left">
@@ -108,8 +108,8 @@ const textToneClass: Record<PrizeTone, string> = {
       </div>
 
       <div class="prizes-grid">
-        {categories.map((category) => (
-          <div class="prizes-card">
+        {categories.map((category, idx) => (
+          <div class="prizes-card" data-animate data-animate-delay={String(idx * 80)}>
             <div class={`prizes-card-icon ${iconToneClass[category.tone]}`} aria-hidden="true">
               {category.icon}
             </div>
@@ -184,7 +184,7 @@ const textToneClass: Record<PrizeTone, string> = {
 
   .prizes-section {
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
-    background: var(--ds-bg-deep);
+    background: var(--ds-bg-elevated);
     font-family: var(--ds-font);
   }
 

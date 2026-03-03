@@ -29,7 +29,7 @@ const mentorTracks = [
 
   <div class="mentors-container">
     <!-- Header -->
-    <header class="mentors-header">
+    <header class="mentors-header" data-animate>
       <div class="mentors-badge">
         <span class="mentors-badge-dot" aria-hidden="true"></span>
         <span class="mentors-badge-text">Expertos</span>
@@ -44,8 +44,8 @@ const mentorTracks = [
 
     <!-- Mentor Tracks Grid -->
     <div class="mentors-tracks-grid">
-      {mentorTracks.map((track) => (
-        <article class="mentors-card" aria-label={track.title}>
+      {mentorTracks.map((track, idx) => (
+        <article class="mentors-card" aria-label={track.title} data-animate data-animate-delay={String(idx * 100)}>
           <div class="mentors-card-icon" aria-hidden="true">
             {track.icon}
           </div>
