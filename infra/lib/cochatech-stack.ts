@@ -13,26 +13,32 @@ export class CochaTechStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: CochaTechStackProps) {
     super(scope, id, props);
 
-    // --- Amplify App ---
+    // --- Amplify App (connected to GitHub) ---
     const amplifyApp = new amplify.CfnApp(this, "AmplifyApp", {
       name: "cochatech",
       platform: "WEB",
-      buildSpec: cdk.Fn.sub(
-        JSON.stringify({
-          version: 1,
-          frontend: {
-            phases: {
-              preBuild: { commands: ["npm ci"] },
-              build: { commands: ["npm run build"] },
+      repository: `https://github.com/${props.githubOrg}/${props.githubRepo}`,
+      accessToken: cdk.SecretValue.secretsManager("github/cochatech-amplify-token").unsafeUnwrap(),
+      buildSpec: JSON.stringify({
+        version: 1,
+        frontend: {
+          phases: {
+            preBuild: {
+              commands: [
+                "npm install -g pnpm",
+                "pnpm install --frozen-lockfile",
+              ],
             },
-            artifacts: {
-              baseDirectory: "dist",
-              files: ["**/*"],
-            },
-            cache: { paths: ["node_modules/**/*"] },
+            build: { commands: ["pnpm build"] },
           },
-        })
-      ),
+          artifacts: {
+            baseDirectory: "dist",
+            files: ["**/*"],
+          },
+          cache: { paths: ["node_modules/**/*"] },
+        },
+      }),
+      enableBranchAutoDeletion: true,
       customRules: [
         {
           source: "/<*>",
@@ -42,11 +48,21 @@ export class CochaTechStack extends cdk.Stack {
       ],
     });
 
+    // --- Production branch (main) ---
     const mainBranch = new amplify.CfnBranch(this, "MainBranch", {
       appId: amplifyApp.attrAppId,
       branchName: "main",
-      enableAutoBuild: false, // We deploy via GitHub Actions
+      enableAutoBuild: true,
       stage: "PRODUCTION",
+    });
+
+    // --- Preview branches (feature/*) ---
+    new amplify.CfnBranch(this, "PreviewBranches", {
+      appId: amplifyApp.attrAppId,
+      branchName: "feature",
+      enableAutoBuild: true,
+      stage: "DEVELOPMENT",
+      enablePullRequestPreview: true,
     });
 
     // --- Custom Domain ---
@@ -91,45 +107,23 @@ export class CochaTechStack extends cdk.Stack {
       maxSessionDuration: cdk.Duration.hours(1),
     });
 
-    deployRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AmplifyDeploy",
-        effect: iam.Effect.ALLOW,
-        actions: [
-          "amplify:CreateDeployment",
-          "amplify:StartDeployment",
-          "amplify:GetApp",
-          "amplify:GetBranch",
-        ],
-        resources: [
-          `arn:aws:amplify:${this.region}:${this.account}:apps/${amplifyApp.attrAppId}/*`,
-          `arn:aws:amplify:${this.region}:${this.account}:apps/${amplifyApp.attrAppId}`,
-        ],
-      })
-    );
-
+    // Only CDK deploy permissions needed now (Amplify builds itself)
     deployRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "CDKDeploy",
         effect: iam.Effect.ALLOW,
-        actions: [
-          "sts:AssumeRole",
-        ],
-        resources: [
-          `arn:aws:iam::${this.account}:role/cdk-*`,
-        ],
+        actions: ["sts:AssumeRole"],
+        resources: [`arn:aws:iam::${this.account}:role/cdk-*`],
       })
     );
 
     // --- Outputs ---
     new cdk.CfnOutput(this, "AmplifyAppId", {
       value: amplifyApp.attrAppId,
-      description: "Amplify App ID — add as AMPLIFY_APP_ID secret in GitHub",
     });
 
     new cdk.CfnOutput(this, "DeployRoleArn", {
       value: deployRole.roleArn,
-      description: "IAM Role ARN — add as AWS_ROLE_ARN secret in GitHub",
     });
 
     new cdk.CfnOutput(this, "DomainUrl", {
