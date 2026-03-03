@@ -102,11 +102,15 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Serve and scan with ZAP
+      - name: Start preview server
+        run: |
+          pnpm preview --host 0.0.0.0 &
+          sleep 5
+          curl -s --retry 10 --retry-delay 2 --retry-connrefused http://localhost:4321 > /dev/null
+
+      - name: ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
           cmd_options: '-a'
           target: 'http://localhost:4321'
           allow_issue_writing: false
-        env:
-          SERVE_CMD: 'pnpm preview --host 0.0.0.0'
