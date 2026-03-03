@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # CDK
 infra/cdk.out/
+infra/.husky/

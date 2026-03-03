@@ -65,7 +65,11 @@ const international = sponsorsData.international;
               class="sponsors-logo-card sponsors-logo-card-ally"
               aria-label={ally.name}
             >
-              <img src={ally.logo} alt={ally.name} class="sponsors-logo-img sponsors-logo-img-ally" />
+              <img 
+                src={ally.logo} 
+                alt={ally.name} 
+                class={`sponsors-logo-img sponsors-logo-img-ally ${ally.name === 'CloudClub' ? 'sponsors-logo-img-enlarged' : ''}`} 
+              />
             </a>
           ))}
         </div>
@@ -354,6 +358,10 @@ const international = sponsorsData.international;
     max-height: 64px;
     max-width: 90%;
     object-fit: contain;
+  }
+
+  .sponsors-logo-img-enlarged {
+    max-height: 85px;
   }
 
   .sponsors-logo-card:hover .sponsors-logo-img {

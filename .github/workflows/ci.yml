@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   build-and-test:
@@ -25,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
 
       - name: TypeScript check
         run: pnpm astro check
@@ -50,3 +54,63 @@ jobs:
 
       - name: Audit dependencies
         run: pnpm audit --audit-level=high
+
+  supply-chain:
+    name: Supply Chain Review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          deny-licenses: GPL-3.0, AGPL-3.0
+          comment-summary-in-pr: always
+
+  sast:
+    name: SAST
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  dast:
+    name: DAST (Headers & Security)
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Start preview server
+        run: |
+          pnpm preview --host 0.0.0.0 &
+          sleep 5
+          curl -s --retry 10 --retry-delay 2 --retry-connrefused http://localhost:4321 > /dev/null
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          cmd_options: '-a'
+          target: 'http://localhost:4321'
+          allow_issue_writing: false
