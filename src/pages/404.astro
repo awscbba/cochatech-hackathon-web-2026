@@ -1,0 +1,115 @@
+---
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Página no encontrada — COCHATECH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body class="not-found-body">
+    <main class="not-found-container">
+      <div class="not-found-card">
+        <h1 class="not-found-title">404</h1>
+        <p class="not-found-subtitle">Uy... no encontramos esta página</p>
+        <p class="not-found-text">
+          Puede que el enlace esté roto o que la página haya sido movida.
+        </p>
+
+        <a href="/" class="not-found-button">
+          ← Volver al inicio
+        </a>
+      </div>
+    </main>
+  </body>
+
+  <style>
+    :root {
+      --ds-bg-deep: #020b1c;
+      --ds-text-primary: #ffffff;
+      --ds-text-secondary: rgba(255, 255, 255, 0.6);
+      --ds-cyan: #00d2ff;
+      --ds-cyan-dim: rgba(0, 210, 255, 0.15);
+      --ds-cyan-border: rgba(0, 210, 255, 0.25);
+      --ds-glass-bg: rgba(255, 255, 255, 0.03);
+      --ds-glass-border: rgba(255, 255, 255, 0.08);
+      --ds-glass-blur: 16px;
+      --ds-font: 'Inter', system-ui, sans-serif;
+      --ds-space-4: 1rem;
+      --ds-space-6: 1.5rem;
+      --ds-space-8: 2rem;
+      --ds-space-12: 3rem;
+      --ds-radius-lg: 16px;
+      --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.not-found-body {
+      margin: 0;
+      background: var(--ds-bg-deep);
+      color: var(--ds-text-primary);
+      font-family: var(--ds-font);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--ds-space-8);
+    }
+
+    .not-found-container {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .not-found-card {
+      background: var(--ds-glass-bg);
+      border: 1px solid var(--ds-glass-border);
+      backdrop-filter: blur(var(--ds-glass-blur));
+      padding: var(--ds-space-12) var(--ds-space-8);
+      border-radius: var(--ds-radius-lg);
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.12);
+    }
+
+    .not-found-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin: 0;
+      font-weight: 800;
+      color: var(--ds-cyan);
+      letter-spacing: -0.03em;
+    }
+
+    .not-found-subtitle {
+      margin-top: var(--ds-space-4);
+      margin-bottom: var(--ds-space-4);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 600;
+      color: var(--ds-text-primary);
+    }
+
+    .not-found-text {
+      font-size: var(--ds-fs-base);
+      color: var(--ds-text-secondary);
+      margin-bottom: var(--ds-space-8);
+      line-height: 1.6;
+    }
+
+    .not-found-button {
+      display: inline-block;
+      padding: var(--ds-space-4) var(--ds-space-8);
+      border-radius: var(--ds-radius-lg);
+      border: 1px solid var(--ds-cyan-border);
+      color: var(--ds-cyan);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all var(--ds-t-normal);
+    }
+
+    .not-found-button:hover {
+      background: var(--ds-cyan-dim);
+      border-color: var(--ds-cyan);
+      color: var(--ds-text-primary);
+    }
+  </style>
+</html>
