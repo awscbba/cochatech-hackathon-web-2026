@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   build-and-test:
@@ -25,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
 
       - name: TypeScript check
         run: pnpm astro check
@@ -50,3 +54,46 @@ jobs:
 
       - name: Audit dependencies
         run: pnpm audit --audit-level=high
+
+  sast:
+    name: SAST
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  dast:
+    name: DAST (Headers & Security)
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Serve and scan with ZAP
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          cmd_options: '-a'
+          target: 'http://localhost:4321'
+          allow_issue_writing: false
+        env:
+          SERVE_CMD: 'pnpm preview --host 0.0.0.0'
