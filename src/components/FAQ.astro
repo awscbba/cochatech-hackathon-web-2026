@@ -1,5 +1,5 @@
 ---
-// FAQ Accordion component with design system
+// FAQ Accordion component with smooth height animation
 ---
 
 <section id="faq" class="faq-section">
@@ -16,216 +16,134 @@
 
     <!-- FAQ Accordion -->
     <div class="faq-accordion">
-      <!-- FAQ Item 1 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Cuál es la fecha exacta del hackathon?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>El hackathon COCHATECH 2026 se llevará a cabo del 16 al 17 de mayo en Cochabamba, Bolivia. Son 36-48 horas continuas de innovación y colaboración.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>El hackathon COCHATECH 2026 se llevará a cabo del 16 al 17 de mayo en Cochabamba, Bolivia. Son 36-48 horas continuas de innovación y colaboración.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 2 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Cuál es el costo de participación?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>¡La participación es completamente gratuita! Todos los estudiantes elegibles pueden postularse sin costo. Incluye comidas y acceso a mentorías durante el evento.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>¡La participación es completamente gratuita! Todos los estudiantes elegibles pueden postularse sin costo. Incluye comidas y acceso a mentorías durante el evento.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 3 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Cuántas personas pueden estar en un equipo?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>Los equipos pueden tener entre 3 y 6 miembros. Buscamos diversidad: combina desarrolladores, diseñadores, emprendedores y especialistas en otros campos. Si no tienes equipo, podemos ayudarte a encontrar compañeros.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>Los equipos pueden tener entre 3 y 6 miembros. Buscamos diversidad: combina desarrolladores, diseñadores, emprendedores y especialistas en otros campos. Si no tienes equipo, podemos ayudarte a encontrar compañeros.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 4 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Necesito tener experiencia previa en hackathons?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>No es necesario. COCHATECH es inclusivo y acoge a todos los niveles de experiencia. Lo importante es tu pasión por la innovación y tu disposición a aprender. Nuestros mentores te guiarán en cada paso.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>No es necesario. COCHATECH es inclusivo y acoge a todos los niveles de experiencia. Lo importante es tu pasión por la innovación y tu disposición a aprender. Nuestros mentores te guiarán en cada paso.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 5 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Qué sucede si mi proyecto gana un premio?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>¡Felicidades! Recibirás reconocimiento público, el premio correspondiente, acceso a mentoría especializada durante 6 meses y oportunidades de inversión. Los proyectos sobresalientes pueden convertirse en startups reales.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>¡Felicidades! Recibirás reconocimiento público, el premio correspondiente, acceso a mentoría especializada durante 6 meses y oportunidades de inversión. Los proyectos sobresalientes pueden convertirse en startups reales.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 6 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Necesito ser de Cochabamba para participar?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>No. El único requisito es estar inscrito en una universidad boliviana. Pueden participar estudiantes de La Paz, Santa Cruz, Oruro y cualquier otra ciudad.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>No. El único requisito es estar inscrito en una universidad boliviana. Pueden participar estudiantes de La Paz, Santa Cruz, Oruro y cualquier otra ciudad.</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 7 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Cuál es el proceso de postulación?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>Es simple: 1) Forma tu equipo o encuéntrate con uno. 2) Completa el formulario de inscripción con información de tu equipo. 3) Espera el anuncio de seleccionados en Abril. 4) Asiste a la sesión de inmersión, bootcamps y mentorias. 5) Inícialo en el hackathon!</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>Es simple: 1) Forma tu equipo o encuéntrate con uno. 2) Completa el formulario de inscripción con información de tu equipo. 3) Espera el anuncio de seleccionados en Abril. 4) Asiste a la sesión de inmersión, bootcamps y mentorias. 5) ¡Inícialo en el hackathon!</p></div>
         </div>
-      </details>
+      </div>
 
-      <!-- FAQ Item 8 -->
-      <details class="faq-item">
-        <summary class="faq-summary">
+      <div class="faq-item">
+        <button class="faq-summary" aria-expanded="false">
           <span>¿Hay participantes internacionales?</span>
-          <span class="faq-chevron">
-            <svg
-              class="faq-chevron-icon"
-              fill="none"
-              height="24"
-              shape-rendering="geometricPrecision"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              width="24"
-            >
-              <path d="M6 9l6 6 6-6"></path>
-            </svg>
+          <span class="faq-chevron" aria-hidden="true">
+            <svg class="faq-chevron-icon" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
           </span>
-        </summary>
-        <div class="faq-content">
-          <p>Sí. Tenemos mentores y jueces internacionales que participarán virtualmente o en persona. Esto enriquece la experiencia con perspectivas globales y aumenta las oportunidades de conexión internacional.</p>
+        </button>
+        <div class="faq-body">
+          <div class="faq-content"><p>Sí. Tenemos mentores y jueces internacionales que participarán virtualmente o en persona. Esto enriquece la experiencia con perspectivas globales y aumenta las oportunidades de conexión internacional.</p></div>
         </div>
-      </details>
+      </div>
+
     </div>
   </div>
 </section>
+
+<script is:inline>
+(function () {
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var btn = item.querySelector('.faq-summary');
+    var body = item.querySelector('.faq-body');
+    if (!btn || !body) return;
+
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      body.style.maxHeight = isOpen ? body.scrollHeight + 'px' : '0';
+      body.style.opacity = isOpen ? '1' : '0';
+
+      // Accordion: close others
+      document.querySelectorAll('.faq-item.is-open').forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove('is-open');
+          var ob = other.querySelector('.faq-summary');
+          var obb = other.querySelector('.faq-body');
+          if (ob) ob.setAttribute('aria-expanded', 'false');
+          if (obb) { obb.style.maxHeight = '0'; obb.style.opacity = '0'; }
+        }
+      });
+    });
+  });
+})();
+</script>
 
 <style>
   :root {
@@ -263,6 +181,7 @@
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
     background: var(--ds-bg-elevated);
     font-family: var(--ds-font);
+    position: relative;
   }
 
   .faq-container {
@@ -294,7 +213,6 @@
     line-height: 1.7;
     max-width: 55ch;
     margin: 0;
-    margin-top: 0;
   }
 
   .faq-accordion {
@@ -306,11 +224,11 @@
   .faq-item {
     border-radius: var(--ds-radius-lg);
     overflow: hidden;
-    transition: all var(--ds-t-normal);
   }
 
   .faq-summary {
     display: flex;
+    width: 100%;
     cursor: pointer;
     align-items: center;
     justify-content: space-between;
@@ -322,7 +240,9 @@
     border: 1px solid var(--ds-glass-border);
     border-radius: var(--ds-radius-lg);
     transition: all var(--ds-t-normal);
-    list-style: none;
+    font-family: var(--ds-font);
+    text-align: left;
+    gap: var(--ds-space-4);
   }
 
   .faq-summary:hover {
@@ -330,9 +250,11 @@
     border-color: var(--ds-glass-border-hover);
   }
 
-  .faq-item[open] .faq-summary {
+  .faq-item.is-open .faq-summary {
     background: var(--ds-glass-bg-hover);
     border-color: var(--ds-cyan);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .faq-chevron {
@@ -344,7 +266,7 @@
     transition: transform var(--ds-t-normal);
   }
 
-  .faq-item[open] .faq-chevron {
+  .faq-item.is-open .faq-chevron {
     transform: rotate(180deg);
   }
 
@@ -353,30 +275,39 @@
     height: 20px;
   }
 
+  /* Smooth height animation */
+  .faq-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease;
+  }
+
   .faq-content {
     padding: var(--ds-space-6);
     color: var(--ds-text-secondary);
     font-size: var(--ds-fs-sm);
     line-height: 1.7;
     background: var(--ds-glass-bg);
-    border-top: 1px solid var(--ds-glass-border);
+    border: 1px solid var(--ds-cyan);
+    border-top: none;
+    border-bottom-left-radius: var(--ds-radius-lg);
+    border-bottom-right-radius: var(--ds-radius-lg);
   }
 
   .faq-content p {
     margin: 0;
   }
 
-  @media (max-width: 640px) {
-    .faq-summary {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--ds-space-4);
-    }
-
-    .faq-chevron {
-      align-self: flex-end;
-      margin-top: -1.5rem;
-    }
+  /* Section gradient divider */
+  .faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--ds-bg-deep), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
 </style>
-
