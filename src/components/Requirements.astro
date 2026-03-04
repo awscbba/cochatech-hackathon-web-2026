@@ -93,6 +93,16 @@
     font-family: var(--ds-font);
   }
 
+  .requirements-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--ds-bg-surface), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .requirements-container {
     max-width: 1280px;
     margin: 0 auto;

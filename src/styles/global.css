@@ -576,3 +576,59 @@ section {
 .ds-glow-cyan {
   box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
 }
+
+/* ================================================================
+   NOISE / GRAIN TEXTURE OVERLAY  (Epic 3)
+   ================================================================ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+}
+
+/* ================================================================
+   CARD CURSOR GLOW  (Epic 9)
+   ================================================================ */
+.about-card,
+.prizes-card,
+.mentors-card {
+  position: relative;
+}
+
+.about-card::before,
+.prizes-card::before,
+.mentors-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    200px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 210, 255, 0.08),
+    transparent
+  );
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-card:hover::before,
+.prizes-card:hover::before,
+.mentors-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure card children sit above the glow pseudo-element */
+.about-card > *,
+.prizes-card > *,
+.mentors-card > * {
+  position: relative;
+  z-index: 1;
+}

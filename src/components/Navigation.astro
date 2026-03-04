@@ -6,7 +6,6 @@
   <div class="nav-container">
     <!-- Logo -->
     <a href="#inicio" class="nav-logo">
-
       <span>COCHA TECH</span>
     </a>
 
@@ -16,18 +15,83 @@
       <li><a href="#retos">Retos</a></li>
       <li><a href="#cronograma">Cronograma</a></li>
       <li><a href="#requisitos">Requisitos</a></li>
-      <!-- <li><a href="#premios">Premios</a></li>-->
-      <!-- <li><a href="#mentores">Mentores</a></li>-->
       <li><a href="#contacto">Contacto</a></li>
     </ul>
 
     <!-- Right CTAs -->
     <div class="nav-actions">
-      <!-- <a href="#" class="ds-btn ds-btn-secondary ds-btn-sm nav-secondary-btn">Descargar bases</a>-->
       <a href="https://script.google.com/a/macros/ucb.edu.bo/s/AKfycbxvmsLEWDDxJQaeTkhmLGeZpI6CewsnVW5IE11U4dnKS0uMUYzuU_NG9jdoktgbq2EP/exec" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-primary ds-btn-sm">Aplicar ahora</a>
+      <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false" id="nav-toggle">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Mobile Drawer -->
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-menu">
+    <li><a href="#sobre-el-evento" class="nav-drawer-link">Sobre el Evento</a></li>
+    <li><a href="#retos" class="nav-drawer-link">Retos</a></li>
+    <li><a href="#cronograma" class="nav-drawer-link">Cronograma</a></li>
+    <li><a href="#requisitos" class="nav-drawer-link">Requisitos</a></li>
+    <li><a href="#contacto" class="nav-drawer-link">Contacto</a></li>
+  </ul>
+  <div class="nav-drawer-cta">
+    <a href="https://script.google.com/a/macros/ucb.edu.bo/s/AKfycbxvmsLEWDDxJQaeTkhmLGeZpI6CewsnVW5IE11U4dnKS0uMUYzuU_NG9jdoktgbq2EP/exec" target="_blank" rel="noopener noreferrer" class="ds-btn ds-btn-primary ds-btn-md nav-drawer-apply">Aplicar ahora</a>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  var toggle = document.getElementById('nav-toggle');
+  var drawer = document.getElementById('nav-drawer');
+  if (!toggle || !drawer) return;
+
+  function closeDrawer() {
+    toggle.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = toggle.classList.toggle('is-open');
+    drawer.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    drawer.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  drawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeDrawer);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!toggle.contains(e.target) && !drawer.contains(e.target)) {
+      closeDrawer();
+    }
+  });
+
+  // Epic 6: Nav active link state via IntersectionObserver
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-menu a[href^="#"], .nav-drawer-link[href^="#"]');
+    if (sections.length && navLinks.length) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (a) {
+              a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(function (s) { io.observe(s); });
+    }
+  }
+})();
+</script>
 
 <style>
   .nav-sticky {
@@ -66,19 +130,6 @@
     opacity: 0.8;
   }
 
-  .nav-logo-mark {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--ds-cyan);
-    border-radius: var(--ds-radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.125rem;
-    color: var(--ds-cyan);
-    flex-shrink: 0;
-  }
-
   .nav-menu {
     display: none;
     align-items: center;
@@ -102,10 +153,25 @@
     text-decoration: none;
     white-space: nowrap;
     transition: color var(--ds-t-fast);
+    position: relative;
   }
 
   .nav-menu a:hover {
     color: var(--ds-text-primary);
+  }
+
+  .nav-menu a.is-active {
+    color: var(--ds-text-primary);
+  }
+
+  .nav-menu a.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--ds-cyan);
   }
 
   .nav-actions {
@@ -114,14 +180,109 @@
     gap: var(--ds-space-3);
   }
 
-  /* Only hide the secondary button on very small mobile to save space */
-  .nav-secondary-btn {
-    display: none;
+  /* Hamburger button */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
   }
 
-  @media (min-width: 640px) {
-    .nav-secondary-btn {
-      display: inline-flex;
+  @media (min-width: 1024px) {
+    .nav-hamburger {
+      display: none;
     }
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ds-text-primary);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+  }
+
+  .nav-hamburger.is-open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .nav-hamburger.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .nav-hamburger.is-open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile drawer */
+  .nav-drawer {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background: rgba(2, 11, 28, 0.97);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border-bottom: 1px solid var(--ds-glass-border);
+    z-index: 49;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .nav-drawer.is-open {
+    max-height: 480px;
+    opacity: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .nav-drawer {
+      display: none;
+    }
+  }
+
+  .nav-drawer-menu {
+    list-style: none;
+    margin: 0;
+    padding: var(--ds-space-4) clamp(1rem, 4vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-drawer-link {
+    display: block;
+    padding: var(--ds-space-4) 0;
+    font-size: var(--ds-fs-base);
+    font-weight: 600;
+    color: var(--ds-text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ds-glass-border);
+    transition: color var(--ds-t-fast);
+  }
+
+  .nav-drawer-link:hover,
+  .nav-drawer-link.is-active {
+    color: var(--ds-text-primary);
+  }
+
+  .nav-drawer-cta {
+    padding: var(--ds-space-4) clamp(1rem, 4vw, 3rem) var(--ds-space-6);
+  }
+
+  .nav-drawer-apply {
+    width: 100%;
+    justify-content: center;
   }
 </style>
