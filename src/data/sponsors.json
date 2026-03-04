@@ -19,6 +19,11 @@
         "shortName": "UPB",
         "logo": "/logos/logos-organizers/logo-upb-blanco.png",
         "website": "https://www.upb.edu"
+      },
+      {
+        "name": "Amazon AWS",
+        "logo": "/logos/logos-organizers/logo-aws-white.svg",
+        "website": "https://aws.amazon.com/"
       }
     ]
   },
@@ -101,6 +106,11 @@
     {
       "name": "AWS UG Cochabamba",
       "logo": "/logos/logos-companies/logo-aws-ug-cochabamba.svg",
+      "website": ""
+    },
+    {
+      "name": "CloudClub",
+      "logo": "/logos/logos-companies/CloudClub.svg",
       "website": ""
     }
 
