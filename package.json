@@ -31,5 +31,10 @@
   },
   "lint-staged": {
     "*.{js,ts,astro}": "eslint --fix"
+  },
+  "pnpm": {
+    "overrides": {
+      "lodash": ">=4.17.21"
+    }
   }
 }
