@@ -3,8 +3,8 @@
     "main": {
       "name": "Universidad Católica Boliviana",
       "shortName": "UCB",
-      "logoMobile": "/logos/logos-organizers/logo-ucb-60-vertical.png",
-      "logoDesktop": "/logos/logos-organizers/logo-ucb-60-horizontal.png",
+      "logoMobile": "/logos/logos-organizers/logo-ucb-60-horizontal-blanco.png",
+      "logoDesktop": "/logos/logos-organizers/logo-ucb-60-horizontal-blanco.png",
       "website": "https://cba.ucb.edu.bo/"
     },
     "coOrganizers": [
@@ -31,7 +31,12 @@
     {
       "name": "ICAM",
       "logo": "/logos/logos-companies/logo-icam-blanco.png",
-      "website": "https://www.icam.com.bo"
+      "website": "https://www.icam.bo"
+    },
+    {
+      "name": "Centro de Innovacion y Emprendimiento Plus",
+      "logo": "/logos/logos-companies/logo-cie.svg",
+      "website": ""
     },
     {
       "name": "Banco Bisa",
@@ -44,8 +49,8 @@
       "website": ""
     },
     {
-      "name": "Banco fie",
-      "logo": "/logos/logos-companies/logo-banco-fie.png",
+      "name": "Tinka - Banco Fie",
+      "logo": "/logos/logos-companies/logo-tinka-banco-fie.png",
       "website": ""
     },
     {
@@ -53,12 +58,12 @@
       "logo": "/logos/logos-companies/logo-banco-msc.png",
       "website": ""
     },
-     {
+    {
       "name": "Fundacion Viva",
       "logo": "/logos/logos-companies/logo-fundacion-viva.png",
       "website": ""
     },
-     {
+    {
       "name": "Cemse",
       "logo": "/logos/logos-companies/logo-cemse.png",
       "website": ""
@@ -68,7 +73,7 @@
       "logo": "/logos/logos-companies/logo-child-fund-bolivia.png",
       "website": ""
     },
-     {
+    {
       "name": "Fundacion Gaia Pacha",
       "logo": "/logos/logos-companies/logo-fundacion-gaia-pacha.png",
       "website": ""
@@ -81,11 +86,6 @@
     {
       "name": "Save the Children",
       "logo": "/logos/logos-companies/logo-save-the-children2.svg",
-      "website": ""
-    },
-    {
-      "name": "Tinka",
-      "logo": "/logos/logos-companies/logo-tinka-banco-fie.png",
       "website": ""
     },
     {
@@ -104,6 +104,11 @@
       "website": ""
     },
     {
+      "name": "Cadec",
+      "logo": "/logos/logos-companies/logo-cadec.webp",
+      "website": ""
+    },
+    {
       "name": "AWS UG Cochabamba",
       "logo": "/logos/logos-companies/logo-aws-ug-cochabamba.svg",
       "website": ""
@@ -113,33 +118,37 @@
       "logo": "/logos/logos-companies/CloudClub.svg",
       "website": ""
     }
-
   ],
   "techAndSocial": [],
   "international": [
     {
       "name": "AERCA Argentina",
-      "logo": "/logos/logos-companies/logo-aerca-arg.png",
+      "logo": "/logos/logos-international/logo-aerca-arg.png",
       "website": "https://aerca.org.ar/asociacion-empresarios/"
     },
     {
       "name": "InnovUG Guayaquil",
-      "logo": "/logos/logos-companies/logo-innovUG.png",
+      "logo": "/logos/logos-international/logo-innovUG.png",
       "website": "https://innovug.ug.edu.ec/"
     },
     {
       "name": "Universidad Villa María",
-      "logo": "/logos/logos-companies/logo-universidad-villa-maria.png",
+      "logo": "/logos/logos-international/logo-universidad-villa-maria.png",
       "website": "https://www.unvm.edu.ar/"
     },
     {
       "name": "Incubadora Universidad Villa María",
-      "logo": "/logos/logos-companies/logo-Incubadora-universidad-villa-maria.png",
+      "logo": "/logos/logos-international/logo-Incubadora-universidad-villa-maria.png",
       "website": ""
     },
     {
       "name": "Warmi Ventures",
-      "logo": "/logos/logos-companies/logo-warmi-ventures.png",
+      "logo": "/logos/logos-international/logo-warmi-ventures.png",
+      "website": ""
+    },
+    {
+      "name": "Cetys",
+      "logo": "/logos/logos-international/logo-cetys.jpg",
       "website": ""
     }
   ]
