@@ -5,5 +5,9 @@
       "Bash(npx astro:*)",
       "Bash(where node:*)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "next-devtools"
+  ],
+  "enableAllProjectMcpServers": true
 }
