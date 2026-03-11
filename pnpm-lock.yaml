@@ -19,8 +19,8 @@ importers:
         specifier: ^5.17.1
         version: 5.18.0(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.2)
       lucide:
-        specifier: ^0.576.0
-        version: 0.576.0
+        specifier: ^0.577.0
+        version: 0.577.0
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -1751,8 +1751,8 @@ packages:
     resolution: {integrity: sha512-ESL2CrkS/2wTPfuend7Zhkzo2u0daGJ/A2VucJOgQ/C48S/zB8MMeMHSGKYpXhIjbPxfuezITkaBH1wqv00DDQ==}
     engines: {node: 20 || >=22}
 
-  lucide@0.576.0:
-    resolution: {integrity: sha512-R8OBTUFiPq4BZ7LxRNZECDvBa/8MKgTqcF5N1iifqyPSGD7lT8ymV9103di01b+6xjhPsqlh7hlSxqNcJEK1eg==}
+  lucide@0.577.0:
+    resolution: {integrity: sha512-PpC/m5eOItp/WU/GlQPFBXDOhq6HibL73KzYP37OX3LM7VmzWQF8voEj8QRWUFvy9FIKfeDQkWYoyS1D/MdWFA==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -4312,7 +4312,7 @@ snapshots:
 
   lru-cache@11.2.6: {}
 
-  lucide@0.576.0: {}
+  lucide@0.577.0: {}
 
   magic-string@0.30.21:
     dependencies:
