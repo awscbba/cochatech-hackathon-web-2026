@@ -114,6 +114,21 @@
       "website": "https://cadec.org.bo/"
     },
     {
+      "name": "Intersim",
+      "logo": "/logos/logos-companies/logo-intersim.png",
+      "website": ""
+    },
+    {
+      "name": "GAMC Alcaldia Cochabamba",
+      "logo": "/logos/logos-companies/logo-gamc-cbba.png",
+      "website": ""
+    },
+    {
+      "name": "Mujeres TICS",
+      "logo": "/logos/logos-companies/logo-mujeres-tics.png",
+      "website": ""
+    },
+    {
       "name": "AWS UG Cochabamba",
       "logo": "/logos/logos-companies/logo-aws-ug-cochabamba.svg",
       "website": "https://linktr.ee/awsugcochabamba"
