@@ -142,6 +142,11 @@
   "techAndSocial": [],
   "international": [
     {
+      "name": "Antigravity",
+      "logo": "/logos/logos-international/logo-antigravity.png",
+      "website": "https://puentes.antigravity.capital/"
+    },
+    {
       "name": "AERCA Argentina",
       "logo": "/logos/logos-international/logo-aerca-arg.png",
       "website": "https://aerca.org.ar/asociacion-empresarios/"
