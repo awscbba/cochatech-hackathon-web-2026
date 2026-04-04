@@ -28,22 +28,112 @@ const {
 		<title>{title}</title>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="preload" as="style" />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<style>
+			/* Epic 4 — Scroll Progress Bar */
+			#scroll-progress {
+				position: fixed;
+				top: 0; left: 0;
+				height: 2px;
+				width: 0%;
+				background: linear-gradient(90deg, #00d2ff, #ffff00);
+				z-index: 9998;
+				transition: width 0.1s linear;
+				pointer-events: none;
+			}
+
+			/* Epic 8 — Floating Back-to-Top */
+			#back-to-top {
+				position: fixed;
+				bottom: 2rem; right: 2rem;
+				width: 44px; height: 44px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.03);
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				border: 1px solid rgba(0, 210, 255, 0.3);
+				color: #00d2ff;
+				opacity: 0; pointer-events: none;
+				transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+				z-index: 500;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			#back-to-top.is-visible {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			#back-to-top:hover {
+				background: rgba(0, 210, 255, 0.15);
+				transform: translateY(-3px);
+			}
+
+			#back-to-top svg {
+				width: 18px; height: 18px;
+			}
+		</style>
 	</head>
 	<body class="bg-[#020b1c] text-white">
+		<!-- Epic 4: Scroll progress bar -->
+		<div id="scroll-progress" aria-hidden="true"></div>
+
 		<slot />
+
+		<!-- Epic 8: Floating back-to-top button -->
+		<button id="back-to-top" aria-label="Volver al inicio">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<line x1="12" y1="19" x2="12" y2="5"></line>
+				<polyline points="5 12 12 5 19 12"></polyline>
+			</svg>
+		</button>
+
 		<script is:inline>
 		(function(){
-		  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-		  var io=new IntersectionObserver(function(entries){
-		    entries.forEach(function(entry){
-		      if(entry.isIntersecting){
-		        var d=+(entry.target.dataset.animateDelay||0);
-		        setTimeout(function(){entry.target.classList.add('is-visible');},d);
-		        io.unobserve(entry.target);
-		      }
+		  // Scroll animations
+		  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+		    var io=new IntersectionObserver(function(entries){
+		      entries.forEach(function(entry){
+		        if(entry.isIntersecting){
+		          var d=+(entry.target.dataset.animateDelay||0);
+		          setTimeout(function(){entry.target.classList.add('is-visible');},d);
+		          io.unobserve(entry.target);
+		        }
+		      });
+		    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+		    document.querySelectorAll('[data-animate]').forEach(function(el){io.observe(el);});
+		  }
+
+		  // Epic 4: Scroll progress bar
+		  var progressBar = document.getElementById('scroll-progress');
+		  if (progressBar) {
+		    window.addEventListener('scroll', function () {
+		      var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+		      progressBar.style.width = Math.min(pct, 100) + '%';
+		    }, { passive: true });
+		  }
+
+		  // Epic 8: Back-to-top button
+		  var backToTop = document.getElementById('back-to-top');
+		  if (backToTop) {
+		    window.addEventListener('scroll', function () {
+		      backToTop.classList.toggle('is-visible', window.scrollY > 300);
+		    }, { passive: true });
+		    backToTop.addEventListener('click', function () {
+		      window.scrollTo({ top: 0, behavior: 'smooth' });
 		    });
-		  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
-		  document.querySelectorAll('[data-animate]').forEach(function(el){io.observe(el);});
+		  }
+
+		  // Epic 9: Card cursor glow
+		  document.querySelectorAll('.about-card, .prizes-card, .mentors-card').forEach(function (card) {
+		    card.addEventListener('mousemove', function (e) {
+		      var rect = card.getBoundingClientRect();
+		      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+		      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+		    });
+		  });
 		})();
 		</script>
 	</body>

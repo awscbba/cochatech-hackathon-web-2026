@@ -115,6 +115,17 @@
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
     background: var(--ds-bg-deep);
     font-family: var(--ds-font);
+    position: relative;
+  }
+
+  .challenges-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--ds-bg-surface), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
 
   .challenges-container {

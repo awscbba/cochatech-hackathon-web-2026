@@ -82,9 +82,10 @@
 
     <!-- CTA Button -->
     <div class="requirements-cta">
-      <a href="https://script.google.com/a/macros/ucb.edu.bo/s/AKfycbxvmsLEWDDxJQaeTkhmLGeZpI6CewsnVW5IE11U4dnKS0uMUYzuU_NG9jdoktgbq2EP/exec" target="_blank" rel="noopener noreferrer" class="requirements-btn">
-        Postular Ahora
-      </a>
+      <button type="button" data-closed-modal class="requirements-btn requirements-btn-closed">
+        <svg class="btn-closed-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Inscripciones Cerradas
+      </button>
     </div>
   </div>
 </section>
@@ -95,6 +96,16 @@
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
     background: var(--ds-bg-deep);
     font-family: var(--ds-font);
+  }
+
+  .requirements-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--ds-bg-surface), transparent);
+    pointer-events: none;
+    z-index: 1;
   }
 
   .requirements-container {
@@ -224,6 +235,30 @@
 
   .requirements-btn:active {
     transform: translateY(-1px);
+  }
+
+  .requirements-btn-closed {
+    background: transparent;
+    color: var(--ds-text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+  }
+
+  .requirements-btn-closed:hover {
+    background: rgba(0, 210, 255, 0.06);
+    border-color: rgba(0, 210, 255, 0.25);
+    color: var(--ds-text-secondary);
+    box-shadow: none;
+    transform: translateY(-2px);
+  }
+
+  .requirements-btn-closed .btn-closed-lock {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.5;
   }
 
   @media (max-width: 640px) {
