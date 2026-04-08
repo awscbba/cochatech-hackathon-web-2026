@@ -410,6 +410,25 @@ section {
   background: var(--ds-cyan-dim);
 }
 
+/* Closed-application button override */
+.btn-closed {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--ds-text-muted);
+  cursor: pointer;
+  gap: var(--ds-space-2);
+}
+.btn-closed:hover {
+  border-color: rgba(0, 210, 255, 0.25);
+  color: var(--ds-text-secondary);
+  background: rgba(0, 210, 255, 0.05);
+}
+.btn-closed-lock {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
 .ds-btn-solid-white {
   background: var(--ds-text-primary);
   color: var(--ds-bg-deep);
