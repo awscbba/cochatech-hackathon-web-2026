@@ -30,16 +30,11 @@
       <!-- Stats -->
       <div class="ds-stat-grid hero-metrics-custom">
         <div class="ds-stat stat-participantes-card">
-          <!-- Old target with scratch-through -->
-          <div class="stat-old-value" aria-hidden="true">500+</div>
-          <!-- Sparkle stars around the count -->
-          <div class="stat-sparkle-wrap">
-            <span class="sparkle sparkle-a" aria-hidden="true">✦</span>
-            <span class="sparkle sparkle-b" aria-hidden="true">✦</span>
-            <span class="sparkle sparkle-c" aria-hidden="true">✦</span>
-            <div class="ds-stat-value stat-shine" id="stat-participantes">500<span class="suffix">+</span></div>
+          <div class="ds-stat-value stat-value-wrap">
+            <span class="stat-old" aria-label="antes 500">500</span>
+            <span class="stat-new" id="stat-participantes">1100<span class="suffix">+</span></span>
           </div>
-          <div class="ds-stat-label">Participantes</div>
+          <div class="ds-stat-label">Inscritos 🎉</div>
         </div>
         <div class="ds-stat">
           <div class="ds-stat-value" id="stat-retos">9</div>
@@ -243,7 +238,7 @@
 
       var elP = document.getElementById('stat-participantes');
       var elR = document.getElementById('stat-retos');
-      if (elP) countUp(elP, 1100, 2000, '+');
+      if (elP) countUp(elP, 1100, 1800, '+');
       if (elR) countUp(elR, 9, 1200, '');
     }
   })();
@@ -618,6 +613,64 @@
       padding-top: var(--ds-space-24);
       min-height: auto;
       padding-bottom: var(--ds-space-16);
+    }
+  }
+
+  /* ── Participantes stat: old → new ──────────────────────────── */
+  .stat-participantes-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-participantes-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse 80% 80% at 50% 50%,
+      rgba(0, 210, 255, 0.06),
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .stat-value-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: var(--ds-space-3);
+  }
+
+  .stat-old {
+    font-size: 0.45em;
+    font-weight: 700;
+    color: var(--ds-text-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--ds-red);
+    text-decoration-thickness: 2px;
+    opacity: 0.6;
+    position: relative;
+    top: -2px;
+  }
+
+  .stat-new {
+    background: linear-gradient(90deg, var(--ds-cyan), #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: stat-glow-pulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px var(--ds-cyan-glow));
+  }
+
+  @keyframes stat-glow-pulse {
+    0%, 100% { filter: drop-shadow(0 0 8px var(--ds-cyan-glow)); }
+    50%      { filter: drop-shadow(0 0 20px var(--ds-cyan-glow)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stat-new {
+      animation: none;
+      filter: none;
     }
   }
 </style>
