@@ -1,47 +1,5 @@
 ---
-// Prizes section with design system
-type PrizeTone = 'cyan' | 'white' | 'yellow';
-
-const featuredBenefits = [
-  { icon: '💵', text: 'Premio de valor monetario de $5,000 USD' },
-  { icon: '🎓', text: 'Mentoría especializada por 6 meses' },
-  { icon: '🚀', text: 'Acceso a inversión semilla' },
-  { icon: '📢', text: 'Cobertura y Seguimiento' },
-] as const;
-
-const categories: Array<{
-  icon: string;
-  title: string;
-  reward: string;
-  tone: PrizeTone;
-}> = [
-  { icon: '🎯', title: 'Mejor Solución', reward: '$2,000 USD + Mentorías', tone: 'cyan' },
-  { icon: '❤️', title: 'Mayor Impacto Social', reward: '$2,000 USD + Mentorías', tone: 'white' },
-  { icon: '💡', title: 'Innovación Tecnológica', reward: '$1,500 USD + Mentorías', tone: 'cyan' },
-  { icon: '🎨', title: 'Mejor Diseño UX/UI', reward: '$1,000 USD + Mentorías', tone: 'cyan' },
-  { icon: '🚀', title: 'Mejor Pitch', reward: '$1,000 USD + Mentorías', tone: 'white' },
-  { icon: '⭐', title: 'Premio del Público', reward: '$500 USD + Reconocimiento', tone: 'yellow' },
-];
-
-const allTeamBenefits = [
-  { icon: '📜', label: 'Certificado oficial de participación' },
-  { icon: '🤝', label: 'Acceso directo a la red de conexiones' },
-  { icon: '📚', label: 'Recursos y créditos en la nube' },
-  { icon: '💼', label: 'Showcase para portfolio profesional' },
-] as const;
-
-// Helper maps for tone-based styling
-const iconToneClass: Record<PrizeTone, string> = {
-  cyan: 'prizes-icon-cyan',
-  white: 'prizes-icon-white',
-  yellow: 'prizes-icon-yellow',
-};
-
-const textToneClass: Record<PrizeTone, string> = {
-  cyan: 'prizes-text-cyan',
-  white: 'prizes-text-white',
-  yellow: 'prizes-text-yellow',
-};
+// Prizes section with actual COCHATECH 2026 prize content
 ---
 
 <section id="premios" class="prizes-section">
@@ -53,89 +11,175 @@ const textToneClass: Record<PrizeTone, string> = {
         <span class="prizes-accent">Premios</span> y Reconocimiento
       </h2>
       <p class="prizes-text">
-        Reconocemos la excelencia y la innovación. Más allá del dinero, ofrecemos visibilidad, recursos de alto nivel y oportunidades de crecimiento continuo para los mejores proyectos del hackathon.
+        COCHATECH 2026 no solo premia proyectos — abre puertas reales al ecosistema tech de Bolivia y el mundo.
       </p>
     </div>
 
-    <!-- Featured Prize Card -->
+    <!-- Gran Premio: Silicon Valley -->
     <div class="prizes-featured" data-animate data-animate-delay="100">
       <div class="prizes-featured-content">
-        <!-- Left Side: Description -->
         <div class="prizes-featured-left">
-          <div class="prizes-featured-icon" aria-hidden="true">🏆</div>
-          <h3 class="prizes-featured-title">Gran Premio COCHATECH</h3>
+          <div class="prizes-featured-icon" aria-hidden="true">✈️</div>
+          <h3 class="prizes-featured-title">El Gran Premio: ¡Rumbo a Silicon Valley!</h3>
           <p class="prizes-featured-description">
-            El equipo ganador recibe el galardón principal del evento, un paquete integral diseñado para llevar su prototipo directamente a fase de producción e incubación.
+            El equipo con la solución de mayor impacto y viabilidad técnica obtiene el pase directo a la meca de la tecnología mundial.
           </p>
-
           <ul class="prizes-benefits-list">
-            {featuredBenefits.map((benefit) => (
-              <li class="prizes-benefit-item">
-                <span class="prizes-benefit-icon" aria-hidden="true">{benefit.icon}</span>
-                <span class="prizes-benefit-text">{benefit.text}</span>
-              </li>
-            ))}
+            <li class="prizes-benefit-item">
+              <span class="prizes-benefit-icon" aria-hidden="true">⚡</span>
+              <span class="prizes-benefit-text">Fast-Track a Antigravity (Cohort 4): entrevista directa al prestigioso programa Puentes</span>
+            </li>
+            <li class="prizes-benefit-item">
+              <span class="prizes-benefit-icon" aria-hidden="true">🏙️</span>
+              <span class="prizes-benefit-text">La Experiencia "Puentes": programa inmersivo de una semana completa en San Francisco, California</span>
+            </li>
+            <li class="prizes-benefit-item">
+              <span class="prizes-benefit-icon" aria-hidden="true">🏠</span>
+              <span class="prizes-benefit-text">10 desarrolladores conviviendo en mansión exclusiva, frente a frente con empresas, inversores y startups de Silicon Valley</span>
+            </li>
           </ul>
         </div>
-
-        <!-- Right Side: Value Breakdown -->
         <div class="prizes-featured-right">
-          <span class="prizes-value-label">Valor Total Estimado</span>
-          <div class="prizes-value-display">$5,000+</div>
-
+          <span class="prizes-value-label">Hito histórico para Bolivia</span>
+          <div class="prizes-value-display">Silicon<br/>Valley</div>
           <div class="prizes-badges">
             <span class="ds-badge ds-badge-yellow">
               <span class="ds-badge-dot ds-badge-dot-yellow" aria-hidden="true"></span>
-              Pase a Incubadora
+              Antigravity Cohort 4
             </span>
             <span class="ds-badge ds-badge-outline">
               <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
-              Entrevistas PR
+              San Francisco, CA
             </span>
+          </div>
+          <p class="prizes-featured-credit">
+            Posible gracias a las gestiones estratégicas de <strong>Gadi Borovich</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premios por Categoría -->
+    <div class="prizes-categories-section">
+      <div class="prizes-categories-header" data-animate>
+        <h3 class="prizes-categories-title">🏆 Premios por Categoría</h3>
+        <span class="ds-badge ds-badge-outline">
+          <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
+          Fintech · Social · Empresarial
+        </span>
+      </div>
+      <p class="prizes-categories-subtitle" data-animate>
+        Para los equipos ganadores en cada una de las tres líneas de acción:
+      </p>
+
+      <div class="prizes-grid">
+        <div class="prizes-card" data-animate data-animate-delay="0">
+          <div class="prizes-card-icon prizes-icon-cyan" aria-hidden="true">☁️</div>
+          <h4 class="prizes-card-title">Infraestructura Cloud</h4>
+          <p class="prizes-card-text">
+            Créditos de Amazon Web Services para alojar, probar y escalar sus soluciones tecnológicas en la nube.
+          </p>
+          <div class="prizes-card-reward prizes-text-cyan">$1,000 USD en créditos AWS</div>
+        </div>
+
+        <div class="prizes-card" data-animate data-animate-delay="80">
+          <div class="prizes-card-icon prizes-icon-yellow" aria-hidden="true">💰</div>
+          <h4 class="prizes-card-title">Capital en Especie</h4>
+          <p class="prizes-card-text">
+            Herramientas o insumos para seguir desarrollando sus proyectos.
+          </p>
+          <div class="prizes-card-reward prizes-text-yellow">1,000 – 2,000 Bs. en premios</div>
+        </div>
+
+        <div class="prizes-card" data-animate data-animate-delay="160">
+          <div class="prizes-card-icon prizes-icon-cyan" aria-hidden="true">🎓</div>
+          <h4 class="prizes-card-title">Actualización Tecnológica</h4>
+          <p class="prizes-card-text">
+            Medias becas para cursos y programas especializados en Automatización.
+          </p>
+          <div class="prizes-card-reward prizes-text-cyan">Becas de capacitación</div>
+        </div>
+
+        <div class="prizes-card" data-animate data-animate-delay="240">
+          <div class="prizes-card-icon prizes-icon-white" aria-hidden="true">🌐</div>
+          <h4 class="prizes-card-title">Inmersión Web3</h4>
+          <p class="prizes-card-text">
+            Creación y gestión de "Perfiles Profesionales Cripto" para proyectar el talento hacia la economía digital global.
+          </p>
+          <div class="prizes-card-reward prizes-text-white">Perfil en ecosistema global</div>
+        </div>
+
+        <div class="prizes-card" data-animate data-animate-delay="320">
+          <div class="prizes-card-icon prizes-icon-cyan" aria-hidden="true">🎁</div>
+          <h4 class="prizes-card-title">Kits del Ecosistema</h4>
+          <p class="prizes-card-text">
+            Souvenirs y paquetes exclusivos otorgados por aliados estratégicos: Banca, ONGs, Empresas y el Municipio de Cochabamba.
+          </p>
+          <div class="prizes-card-reward prizes-text-cyan">Paquetes exclusivos de aliados</div>
+        </div>
+
+        <div class="prizes-card" data-animate data-animate-delay="400">
+          <div class="prizes-card-icon prizes-icon-yellow" aria-hidden="true">🎊</div>
+          <h4 class="prizes-card-title">Reconocimiento Corporativo</h4>
+          <p class="prizes-card-text">
+            Cajas de sorpresas exclusivas armadas directamente por las organizaciones retadoras.
+          </p>
+          <div class="prizes-card-reward prizes-text-yellow">Sorpresas de las empresas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premios de Empleabilidad -->
+    <div class="prizes-employment-section" data-animate>
+      <div class="prizes-employment-header">
+        <div class="prizes-employment-icon" aria-hidden="true">💼</div>
+        <div>
+          <h3 class="prizes-employment-title">Premios de Empleabilidad y Ecosistema</h3>
+          <p class="prizes-employment-subtitle">Para el talento destacado — COCHATECH no solo premia proyectos, inserta talento real en el mercado laboral</p>
+        </div>
+      </div>
+      <div class="prizes-employment-grid">
+        <div class="prizes-employment-card">
+          <div class="prizes-employment-card-icon" aria-hidden="true">🤝</div>
+          <div class="prizes-employment-card-content">
+            <h4 class="prizes-employment-card-title">Contratación Directa</h4>
+            <p class="prizes-employment-card-text">
+              Se abrirán <strong>2 puestos de trabajo formales</strong> para el área de desarrollo. Las empresas aliadas harán scouting en vivo durante el evento.
+            </p>
+          </div>
+        </div>
+        <div class="prizes-employment-card">
+          <div class="prizes-employment-card-icon" aria-hidden="true">🌟</div>
+          <div class="prizes-employment-card-content">
+            <h4 class="prizes-employment-card-title">Valor Profesional</h4>
+            <p class="prizes-employment-card-text">
+              Certificados virtuales de participación, acceso continuo a bootcamps de capacitación y entrada directa a la red de networking de alto nivel de Cochabamba y Bolivia.
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Categories Grid -->
-    <div class="prizes-categories-section">
-      <div class="prizes-categories-header">
-        <h3 class="prizes-categories-title">Premios por Categoría</h3>
-        <span class="ds-badge ds-badge-outline">
-          <span class="ds-badge-dot ds-badge-dot-cyan" aria-hidden="true"></span>
-          {categories.length} Categorías
-        </span>
-      </div>
-
-      <div class="prizes-grid">
-        {categories.map((category, idx) => (
-          <div class="prizes-card" data-animate data-animate-delay={String(idx * 80)}>
-            <div class={`prizes-card-icon ${iconToneClass[category.tone]}`} aria-hidden="true">
-              {category.icon}
-            </div>
-            <h4 class="prizes-card-title">{category.title}</h4>
-            <p class="prizes-card-text">
-              Reconocimiento especial al equipo más destacado en esta área técnica.
-            </p>
-            <div class={`prizes-card-reward ${textToneClass[category.tone]}`}>
-              {category.reward}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- All Teams Benefits -->
-    <div class="prizes-all-benefits">
-      <h3 class="prizes-all-benefits-title">Beneficios para Todos</h3>
-
+    <!-- Beneficios para Todos -->
+    <div class="prizes-all-benefits" data-animate>
+      <h3 class="prizes-all-benefits-title">Beneficios para Todos los Equipos</h3>
       <div class="prizes-benefits-grid">
-        {allTeamBenefits.map((benefit) => (
-          <div class="prizes-benefit-card">
-            <div class="prizes-benefit-card-icon" aria-hidden="true">{benefit.icon}</div>
-            <p class="prizes-benefit-card-text">{benefit.label}</p>
-          </div>
-        ))}
+        <div class="prizes-benefit-card">
+          <div class="prizes-benefit-card-icon" aria-hidden="true">📜</div>
+          <p class="prizes-benefit-card-text">Certificado oficial de participación</p>
+        </div>
+        <div class="prizes-benefit-card">
+          <div class="prizes-benefit-card-icon" aria-hidden="true">🤝</div>
+          <p class="prizes-benefit-card-text">Acceso a la red de networking de alto nivel</p>
+        </div>
+        <div class="prizes-benefit-card">
+          <div class="prizes-benefit-card-icon" aria-hidden="true">📚</div>
+          <p class="prizes-benefit-card-text">Acceso a bootcamps de capacitación continua</p>
+        </div>
+        <div class="prizes-benefit-card">
+          <div class="prizes-benefit-card-icon" aria-hidden="true">💼</div>
+          <p class="prizes-benefit-card-text">Showcase en portfolio profesional</p>
+        </div>
       </div>
     </div>
 
@@ -143,45 +187,6 @@ const textToneClass: Record<PrizeTone, string> = {
 </section>
 
 <style>
-  :root {
-    --ds-bg-deep: #020b1c;
-    --ds-text-primary: #ffffff;
-    --ds-text-secondary: rgba(255, 255, 255, 0.6);
-    --ds-text-muted: rgba(255, 255, 255, 0.35);
-    --ds-cyan: #00d2ff;
-    --ds-cyan-dim: rgba(0, 210, 255, 0.15);
-    --ds-cyan-glow: rgba(0, 210, 255, 0.4);
-    --ds-yellow: #ffff00;
-    --ds-yellow-dim: rgba(255, 255, 0, 0.12);
-    --ds-glass-bg: rgba(255, 255, 255, 0.03);
-    --ds-glass-border: rgba(255, 255, 255, 0.07);
-    --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
-    --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
-    --ds-glass-blur: 16px;
-    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
-    --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
-    --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
-    --ds-fs-xs: clamp(0.65rem, 0.5vw + 0.4rem, 0.75rem);
-    --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
-    --ds-fs-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
-    --ds-fs-2xl: clamp(2rem, 4vw + 0.5rem, 3.25rem);
-    --ds-fs-3xl: clamp(2.75rem, 6vw + 0.5rem, 4.5rem);
-    --ds-radius-md: 10px;
-    --ds-radius-lg: 16px;
-    --ds-radius-xl: 24px;
-    --ds-radius-full: 9999px;
-    --ds-space-2: 0.5rem;
-    --ds-space-3: 0.75rem;
-    --ds-space-4: 1rem;
-    --ds-space-5: 1.25rem;
-    --ds-space-6: 1.5rem;
-    --ds-space-8: 2rem;
-    --ds-space-10: 2.5rem;
-    --ds-space-16: 4rem;
-    --ds-t-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
-    --ds-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  }
-
   .prizes-section {
     padding: var(--ds-space-16) clamp(1rem, 4vw, 3rem);
     background: var(--ds-bg-elevated);
@@ -312,19 +317,21 @@ const textToneClass: Record<PrizeTone, string> = {
 
   .prizes-benefit-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--ds-space-4);
   }
 
   .prizes-benefit-icon {
     font-size: 1.25rem;
     flex-shrink: 0;
+    margin-top: 2px;
   }
 
   .prizes-benefit-text {
     font-size: var(--ds-fs-sm);
     font-weight: 500;
     color: var(--ds-text-primary);
+    line-height: 1.5;
   }
 
   .prizes-featured-right {
@@ -354,7 +361,7 @@ const textToneClass: Record<PrizeTone, string> = {
   }
 
   .prizes-value-display {
-    font-size: var(--ds-fs-3xl);
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--ds-yellow);
@@ -366,6 +373,18 @@ const textToneClass: Record<PrizeTone, string> = {
     display: flex;
     flex-direction: column;
     gap: var(--ds-space-3);
+    margin-bottom: var(--ds-space-6);
+  }
+
+  .prizes-featured-credit {
+    font-size: var(--ds-fs-xs);
+    color: var(--ds-text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .prizes-featured-credit strong {
+    color: var(--ds-text-secondary);
   }
 
   /* Categories Grid */
@@ -377,7 +396,7 @@ const textToneClass: Record<PrizeTone, string> = {
     display: flex;
     flex-direction: column;
     gap: var(--ds-space-4);
-    margin-bottom: var(--ds-space-10);
+    margin-bottom: var(--ds-space-4);
     align-items: flex-start;
   }
 
@@ -396,6 +415,12 @@ const textToneClass: Record<PrizeTone, string> = {
     line-height: 1.1;
     color: var(--ds-text-primary);
     margin: 0;
+  }
+
+  .prizes-categories-subtitle {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    margin: 0 0 var(--ds-space-10) 0;
   }
 
   .prizes-grid {
@@ -481,16 +506,116 @@ const textToneClass: Record<PrizeTone, string> = {
     margin-top: 0;
   }
 
-  .prizes-text-cyan {
-    color: var(--ds-cyan);
+  .prizes-text-cyan { color: var(--ds-cyan); }
+  .prizes-text-yellow { color: var(--ds-yellow); }
+  .prizes-text-white { color: var(--ds-text-primary); }
+
+  /* Employment Section */
+  .prizes-employment-section {
+    background: var(--ds-glass-bg);
+    backdrop-filter: blur(var(--ds-glass-blur));
+    -webkit-backdrop-filter: blur(var(--ds-glass-blur));
+    border: 1px solid rgba(0, 210, 255, 0.15);
+    border-radius: var(--ds-radius-xl);
+    padding: var(--ds-space-8);
+    margin-bottom: var(--ds-space-16);
+    position: relative;
+    overflow: hidden;
   }
 
-  .prizes-text-yellow {
-    color: var(--ds-yellow);
+  .prizes-employment-section::before {
+    content: '';
+    position: absolute;
+    left: -80px;
+    bottom: -80px;
+    width: 256px;
+    height: 256px;
+    background: var(--ds-cyan);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.07;
+    pointer-events: none;
   }
 
-  .prizes-text-white {
+  .prizes-employment-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ds-space-6);
+    margin-bottom: var(--ds-space-8);
+    position: relative;
+    z-index: 1;
+  }
+
+  .prizes-employment-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--ds-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: var(--ds-cyan-dim);
+    border: 1px solid rgba(0, 210, 255, 0.15);
+    flex-shrink: 0;
+  }
+
+  .prizes-employment-title {
+    font-size: var(--ds-fs-xl);
+    font-weight: 700;
     color: var(--ds-text-primary);
+    margin: 0 0 var(--ds-space-2) 0;
+  }
+
+  .prizes-employment-subtitle {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .prizes-employment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--ds-space-6);
+    position: relative;
+    z-index: 1;
+  }
+
+  .prizes-employment-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ds-space-5);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--ds-glass-border);
+    border-radius: var(--ds-radius-lg);
+    padding: var(--ds-space-6);
+  }
+
+  .prizes-employment-card-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .prizes-employment-card-content {
+    flex: 1;
+  }
+
+  .prizes-employment-card-title {
+    font-size: var(--ds-fs-base);
+    font-weight: 700;
+    color: var(--ds-text-primary);
+    margin: 0 0 var(--ds-space-3) 0;
+  }
+
+  .prizes-employment-card-text {
+    font-size: var(--ds-fs-sm);
+    color: var(--ds-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .prizes-employment-card-text strong {
+    color: var(--ds-cyan);
   }
 
   /* All Benefits Section */
@@ -544,4 +669,38 @@ const textToneClass: Record<PrizeTone, string> = {
     line-height: 1.6;
     margin: 0;
   }
+
+  /* Design system badge styles (local fallback) */
+  .ds-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: var(--ds-radius-full);
+    font-size: var(--ds-fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .ds-badge-yellow {
+    background: var(--ds-yellow-dim);
+    border: 1px solid rgba(255, 255, 0, 0.2);
+    color: var(--ds-yellow);
+  }
+
+  .ds-badge-outline {
+    background: transparent;
+    border: 1px solid var(--ds-glass-border);
+    color: var(--ds-text-secondary);
+  }
+
+  .ds-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .ds-badge-dot-yellow { background: var(--ds-yellow); }
+  .ds-badge-dot-cyan { background: var(--ds-cyan); }
 </style>
