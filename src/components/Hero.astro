@@ -350,6 +350,97 @@
     text-wrap: balance;
   }
 
+  /* ── Participantes milestone card ───────────────────────────── */
+  .stat-participantes-card {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* ── Sparkle wrap ───────────────────────────────────────────── */
+  .stat-sparkle-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Sparkle stars */
+  .sparkle {
+    position: absolute;
+    color: var(--ds-cyan);
+    font-size: 0.7rem;
+    line-height: 1;
+    opacity: 0;
+    animation: sparkle-blink 3s ease-in-out infinite;
+    pointer-events: none;
+    filter: drop-shadow(0 0 4px var(--ds-cyan));
+  }
+
+  .sparkle-a { top: -6px;  right: -10px; animation-delay: 0s;    font-size: 0.65rem; }
+  .sparkle-b { top: 50%;   left: -12px;  animation-delay: 1s;    font-size: 0.5rem;  transform: translateY(-50%); }
+  .sparkle-c { bottom: -4px; right: -8px; animation-delay: 1.7s; font-size: 0.55rem; }
+
+  @keyframes sparkle-blink {
+    0%,  100% { opacity: 0;    transform: scale(0.6) rotate(0deg);   }
+    30%        { opacity: 0.9;  transform: scale(1.15) rotate(20deg); }
+    60%        { opacity: 0.4;  transform: scale(0.85) rotate(0deg);  }
+    80%        { opacity: 0;    transform: scale(0.6) rotate(-10deg); }
+  }
+
+  /* Shine sweep on the number text */
+  .stat-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    animation: shine-sweep 4s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  @keyframes shine-sweep {
+    0%   { background-position: -100% 0; opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { background-position: 200% 0;  opacity: 1; }
+    55%  { opacity: 0; }
+    100% { background-position: 200% 0;  opacity: 0; }
+  }
+
+  /* Scratched old number */
+  .stat-old-value {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    white-space: nowrap;
+    pointer-events: none;
+    /* diagonal scratch through the text */
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 80, 80, 0.75);
+    text-decoration-thickness: 2px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Push sparkle wrap down to make room for the scratch label */
+  .stat-participantes-card .stat-sparkle-wrap {
+    margin-top: 1.4rem;
+  }
+
   /* Stats row */
   .hero-metrics-custom {
     margin-bottom: var(--ds-space-8);
