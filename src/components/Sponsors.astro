@@ -1,5 +1,5 @@
 ---
-import sponsorsData from '../data/sponsors.json';
+import sponsorsData from "../data/sponsors.json";
 const { main, coOrganizers } = sponsorsData.organizers;
 const allies = sponsorsData.allies;
 const international = sponsorsData.international;
@@ -22,7 +22,9 @@ const international = sponsorsData.international;
       <h3 class="sponsors-tier-title">Organizadores</h3>
 
       <!-- Main organizer: UCB alone -->
-      <div class="sponsors-tier-grid sponsors-tier-grid-lg sponsors-main-organizer">
+      <div
+        class="sponsors-tier-grid sponsors-tier-grid-lg sponsors-main-organizer"
+      >
         <a
           href={main.website}
           target="_blank"
@@ -30,51 +32,61 @@ const international = sponsorsData.international;
           class="sponsors-logo-card sponsors-logo-card-main"
           aria-label={main.name}
         >
-          <img src={main.logoDesktop} alt={main.name} class="sponsors-logo-img sponsors-ucb-logo" />
+          <img
+            src={main.logoDesktop}
+            alt={main.name}
+            class="sponsors-logo-img sponsors-ucb-logo"
+          />
         </a>
       </div>
 
       <!-- Co-organizers row -->
       <div class="sponsors-tier-grid sponsors-tier-grid-lg">
-        {coOrganizers.map((org) => (
-          <a
-            href={org.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="sponsors-logo-card sponsors-logo-card-co"
-            aria-label={org.name}
-          >
-            <img src={org.logo} alt={org.name} class="sponsors-logo-img sponsors-logo-img-co" />
-          </a>
-        ))}
+        {
+          coOrganizers.map((org) => (
+            <a
+              href={org.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsors-logo-card sponsors-logo-card-co"
+              aria-label={org.name}
+            >
+              <img
+                src={org.logo}
+                alt={org.name}
+                class="sponsors-logo-img sponsors-logo-img-co"
+              />
+            </a>
+          ))
+        }
       </div>
     </div>
 
-    
-
     <!-- Allies Tier -->
-    {allies.length > 0 && (
-      <div class="sponsors-tier">
-        <h3 class="sponsors-tier-title">Aliados</h3>
-        <div class="sponsors-allies-grid">
-          {allies.map((ally) => (
-            <a
-              href={ally.website || undefined}
-              target={ally.website ? "_blank" : undefined}
-              rel={ally.website ? "noopener noreferrer" : undefined}
-              class="sponsors-logo-card sponsors-logo-card-ally"
-              aria-label={ally.name}
-            >
-              <img 
-                src={ally.logo} 
-                alt={ally.name} 
-                class={`sponsors-logo-img sponsors-logo-img-ally ${ally.name === 'CloudClub' ? 'sponsors-logo-img-enlarged' : ''}`} 
-              />
-            </a>
-          ))}
+    {
+      allies.length > 0 && (
+        <div class="sponsors-tier">
+          <h3 class="sponsors-tier-title">Aliados</h3>
+          <div class="sponsors-allies-grid">
+            {allies.map((ally) => (
+              <a
+                href={ally.website || undefined}
+                target={ally.website ? "_blank" : undefined}
+                rel={ally.website ? "noopener noreferrer" : undefined}
+                class="sponsors-logo-card sponsors-logo-card-ally"
+                aria-label={ally.name}
+              >
+                <img
+                  src={ally.logo}
+                  alt={ally.name}
+                  class={`sponsors-logo-img sponsors-logo-img-ally ${ally.name === "CloudClub" ? "sponsors-logo-img-enlarged" : ""}`}
+                />
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
+      )
+    }
 
     <!-- Technology & Social Partners Tier 
     <div class="sponsors-tier">
@@ -96,24 +108,30 @@ const international = sponsorsData.international;
     </div> -->
 
     <!-- International Partners Tier -->
-    {international.length > 0 && (
-      <div class="sponsors-tier">
-        <h3 class="sponsors-tier-title">Aliados Internacionales</h3>
-        <div class="sponsors-allies-grid">
-          {international.map((partner) => (
-            <a
-              href={partner.website || undefined}
-              target={partner.website ? "_blank" : undefined}
-              rel={partner.website ? "noopener noreferrer" : undefined}
-              class="sponsors-logo-card sponsors-logo-card-ally"
-              aria-label={partner.name}
-            >
-              <img src={partner.logo} alt={partner.name} class="sponsors-logo-img sponsors-logo-img-ally" />
-            </a>
-          ))}
+    {
+      international.length > 0 && (
+        <div class="sponsors-tier">
+          <h3 class="sponsors-tier-title">Aliados Internacionales</h3>
+          <div class="sponsors-allies-grid">
+            {international.map((partner) => (
+              <a
+                href={partner.website || undefined}
+                target={partner.website ? "_blank" : undefined}
+                rel={partner.website ? "noopener noreferrer" : undefined}
+                class="sponsors-logo-card sponsors-logo-card-ally"
+                aria-label={partner.name}
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  class="sponsors-logo-img sponsors-logo-img-ally"
+                />
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
+      )
+    }
   </div>
 </section>
 
@@ -131,7 +149,7 @@ const international = sponsorsData.international;
     --ds-glass-bg-hover: rgba(255, 255, 255, 0.06);
     --ds-glass-border-hover: rgba(255, 255, 255, 0.15);
     --ds-glass-blur: 16px;
-    --ds-font: 'Inter', system-ui, -apple-system, sans-serif;
+    --ds-font: "Inter", system-ui, -apple-system, sans-serif;
     --ds-fs-sm: clamp(0.8rem, 0.6vw + 0.5rem, 0.875rem);
     --ds-fs-base: clamp(0.95rem, 0.8vw + 0.5rem, 1.0625rem);
     --ds-fs-lg: clamp(1.15rem, 1.2vw + 0.6rem, 1.35rem);
