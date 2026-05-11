@@ -200,6 +200,16 @@
       "name": "WIIE Ventures",
       "logo": "/logos/logos-international/logo-wiie-ventures-bl.png",
       "website": ""
+    },
+    {
+      "name": "Digital Services",
+      "logo": "/logos/logos-international/logo-digitalservices.png",
+      "website": "https://www.facebook.com/p/Digital-Services-100084432777557/"
+    },
+    {
+      "name": "Twintro",
+      "logo": "/logos/logos-international/logo-twintro.png",
+      "website": "https://twintro.com"
     }
   ]
 }
