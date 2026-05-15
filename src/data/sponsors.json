@@ -134,6 +134,26 @@
       "website": ""
     },
     {
+      "name": "Rodriguez",
+      "logo": "/logos/logos-companies/logo-rodriguez.png",
+      "website": "https://linktr.ee/awsugcochabamba"
+    },
+    {
+      "name": "Tigo",
+      "logo": "/logos/logos-companies/logo_tigo.svg",
+      "website": "https://linktr.ee/awsugcochabamba"
+    },
+    {
+      "name": "CAINCO",
+      "logo": "/logos/logos-companies/logo_cainco.png",
+      "website": "https://linktr.ee/awsugcochabamba"
+    },
+    {
+      "name": "JCI",
+      "logo": "/logos/logos-companies/logo_jci.png",
+      "website": "https://linktr.ee/awsugcochabamba"
+    },
+    {
       "name": "AWS UG Cochabamba",
       "logo": "/logos/logos-companies/logo-aws-ug-cochabamba.svg",
       "website": "https://linktr.ee/awsugcochabamba"
@@ -210,6 +230,16 @@
       "name": "Twintro",
       "logo": "/logos/logos-international/logo-twintro.png",
       "website": "https://twintro.com"
+    },
+    {
+      "name": "GlobalGateway",
+      "logo": "/logos/logos-international/logo_globalGateway.png",
+      "website": "https://linktr.ee/awsugcochabamba"
+    },
+    {
+      "name": "Union Europea",
+      "logo": "/logos/logos-international/logo_unionEuropea.png",
+      "website": ""
     }
   ]
 }
