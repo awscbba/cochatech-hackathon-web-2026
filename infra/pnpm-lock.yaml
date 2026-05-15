@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       aws-cdk-lib:
-        specifier: ^2.180.0
+        specifier: ^2.241.0
         version: 2.241.0(constructs@10.5.1)
       constructs:
-        specifier: ^10.4.2
+        specifier: ^10.5.1
         version: 10.5.1
     devDependencies:
       '@eslint/js':
@@ -25,7 +25,7 @@ importers:
         specifier: ^8.56.1
         version: 8.56.1(eslint@10.0.2)(typescript@5.9.3)
       aws-cdk:
-        specifier: ^2.180.0
+        specifier: ^2.1108.0
         version: 2.1108.0
       eslint:
         specifier: ^10.0.2
@@ -569,8 +569,8 @@ packages:
     resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
     engines: {node: '>=4'}
 
-  postcss@8.5.8:
-    resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==}
+  postcss@8.5.14:
+    resolution: {integrity: sha512-SoSL4+OSEtR99LHFZQiJLkT59C5B1amGO1NzTwj7TT1qCUgUO6hxOvzkOYxD+vMrXBM3XJIKzokoERdqQq/Zmg==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -951,7 +951,7 @@ snapshots:
       eslint: 10.0.2
       eslint-compat-utils: 0.6.5(eslint@10.0.2)
       globals: 16.5.0
-      postcss: 8.5.8
+      postcss: 8.5.14
       postcss-selector-parser: 7.1.1
     transitivePeerDependencies:
       - supports-color
@@ -1209,7 +1209,7 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss@8.5.8:
+  postcss@8.5.14:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
