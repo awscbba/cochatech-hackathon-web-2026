@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       aws-cdk-lib:
-        specifier: ^2.180.0
+        specifier: ^2.241.0
         version: 2.241.0(constructs@10.5.1)
       constructs:
-        specifier: ^10.4.2
+        specifier: ^10.5.1
         version: 10.5.1
     devDependencies:
       '@eslint/js':
@@ -25,7 +25,7 @@ importers:
         specifier: ^8.56.1
         version: 8.56.1(eslint@10.0.2)(typescript@5.9.3)
       aws-cdk:
-        specifier: ^2.180.0
+        specifier: ^2.1108.0
         version: 2.1108.0
       eslint:
         specifier: ^10.0.2
@@ -247,8 +247,8 @@ packages:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
 
-  brace-expansion@5.0.4:
-    resolution: {integrity: sha512-h+DEnpVvxmfVefa4jFbCf5HdH5YMDXRsmKflpf1pILZWRFlTbJpxeU55nJl4Smt5HQaGzg1o6RHFPJaOqnmBDg==}
+  brace-expansion@5.0.6:
+    resolution: {integrity: sha512-kLpxurY4Z4r9sgMsyG0Z9uzsBlgiU/EFKhj/h91/8yHu0edo7XuixOIH3VcJ8kkxs6/jPzoI6U9Vj3WqbMQ94g==}
     engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
@@ -892,7 +892,7 @@ snapshots:
 
   balanced-match@4.0.4: {}
 
-  brace-expansion@5.0.4:
+  brace-expansion@5.0.6:
     dependencies:
       balanced-match: 4.0.4
 
@@ -1165,7 +1165,7 @@ snapshots:
 
   minimatch@10.2.4:
     dependencies:
-      brace-expansion: 5.0.4
+      brace-expansion: 5.0.6
 
   ms@2.1.3: {}
 
